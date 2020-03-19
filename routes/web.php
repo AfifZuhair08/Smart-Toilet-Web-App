@@ -18,3 +18,9 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard','DashboardController@index');
+
+Route::get('/monitorTissue','MonitorTissueController@index');
+Route::get('/monitorSoap','MonitorSoapController@index');
+
+Route::get('/recordservice','RecordServiceController@index');
+Route::get('/recordstate','RecordStateController@index');
