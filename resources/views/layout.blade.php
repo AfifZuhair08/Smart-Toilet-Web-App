@@ -46,6 +46,13 @@
           <span>Dashboard</span></a>
       </li>
 
+      <!-- Nav Item - Posts -->
+      <li class="nav-item active">
+        <a class="nav-link" href="/posts">
+          <i class="fas fa-fw fa-blog"></i>
+          <span>Posts</span></a>
+      </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider">
 

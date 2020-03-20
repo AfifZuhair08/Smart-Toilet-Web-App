@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
 Route::get('/dashboard','DashboardController@index');
@@ -24,3 +24,5 @@ Route::get('/monitorSoap','MonitorSoapController@index');
 
 Route::get('/recordservice','RecordServiceController@index');
 Route::get('/recordstate','RecordStateController@index');
+
+Route::resource('posts','PostsController');
