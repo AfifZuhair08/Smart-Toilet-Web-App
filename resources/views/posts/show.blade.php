@@ -6,12 +6,17 @@
     <h1 class="h3 mb-0 text-gray-800">
         <a href="/posts">Posts</a>
     </h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 </div>
 
-<h2>{{$post->title}}</h2>
-<div>
-    {{$post->body}}
+<div class="">
+
+    <h2 class="h3 mb-0 text-black"><b>{{$post->title}}</b></h2>
+    <small>{{ $post->created_at}}</small>
+    <hr>
+    <div>
+        <p>{{$post->body}}</p>
+    </div>
 </div>
+
 
 @endsection

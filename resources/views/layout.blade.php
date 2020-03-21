@@ -47,7 +47,7 @@
       </li>
 
       <!-- Nav Item - Posts -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="/posts">
           <i class="fas fa-fw fa-blog"></i>
           <span>Posts</span></a>
@@ -159,7 +159,7 @@
 
     </ul>
     <!-- End of Sidebar -->
-
+    
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -417,6 +417,12 @@
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
 
+  <script type="text/javasript">
+    $(document).on('click','ul li', function(){
+      $(this).addClass('active').siblings().removeClass('active')
+    })
+  </script>
+  
 </body>
 
 </html>

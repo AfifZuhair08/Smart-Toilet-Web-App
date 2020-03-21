@@ -93,7 +93,10 @@
 
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Latest Post</h1>
+    <h3 class="h3 mb-0 text-gray-800">Latest Post</h3>
+    <a href="posts" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+      <i class="fas fa-clipboard fa-sm text-white-50"></i> VIEW MORE POSTS
+    </a>
   </div>
   <div>
   @if (count($posts) > 0)
