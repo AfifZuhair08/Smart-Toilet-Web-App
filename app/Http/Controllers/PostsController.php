@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 
+// if using DB query;
+// use DB;
+
 class PostsController extends Controller
 {
     /**
@@ -14,8 +17,23 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        // if using Eloquent style
+            // get all Posts data and display as in table
+                // $posts = Post::all();
+            // get all Posts data and display by last created
+                $posts = Post::orderBy('created_at','desc')->get();
+                
+            // get Posts data but specify how many posts to display
+                // $posts = Post::orderBy('created_at','desc')->take(1)->get();
+
+            // 
+                $posts = Post::orderBy('created_at','desc')->paginate(1);
+        // if using SQL query
+            // $posts = DB::select('SELECT * FROM posts');
+
+        
         return view('posts.index')->with('posts', $posts);
+
     }
 
     /**
@@ -47,7 +65,8 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.show')->with('post', $post);
     }
 
     /**
