@@ -117,7 +117,7 @@
               </div>
               <!-- Card Body -->
               <div class="card-body">
-              <p>{{$post->body}}</p>
+              <p>{!!$post->body!!}</p>
               </div>
           </div>
 

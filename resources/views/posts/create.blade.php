@@ -16,38 +16,39 @@
 
 @include('inc.cpmessage')
 
-    <div class="col-9">
-        {{-- Form to POST --}}
-        {!! Form::open(['action' => 'PostsController@store',
-            'method' => 'POST']) !!}
-        
-        <div class="form-group">
-            {{Form::label('title','Title')}}
-            {{Form::text('title','',['class' => 'form-control','placeholder' => 'Title'])}}
-        </div>
-    </div>
+<div class="col-9">
+    {{-- Form to POST --}}
+    {!! Form::open(['action' => 'PostsController@store',
+        'method' => 'POST']) !!}
     
-    {{-- <div class="row"> --}}
-    <div class="col-9">
-        <div class="form-group">
-            {{Form::label('body','Body')}}
-            {{Form::textarea('body',
-            '',
-            ['class' => 'form-control',
-            'placeholder' => 'Body',
-            'rows' => 10,
-            'cols' => 10
-            ])}}
-        </div>
+    <div class="form-group">
+        {{Form::label('title','Title')}}
+        {{Form::text('title','',['class' => 'form-control','placeholder' => 'Title'])}}
     </div>
-    <div class="col">
+</div>
 
+{{-- <div class="row"> --}}
+<div class="col-9">
+    <div class="form-group">
+        {{Form::label('body','Body')}}
+        {{Form::textarea('body',
+        '',
+        ['id' => 'summary-ckeditor',
+        'class' => 'form-control',
+        'placeholder' => 'Body',
+        'rows' => 10,
+        'cols' => 10
+        ])}}
     </div>
-    
-    <div class="col-9">
-        {{Form::submit('Submit',['class'=>'btn btn-success btn-md btn-block'])}}
-        {!! Form::close() !!}
-    </div>
+</div>
+<div class="col">
+
+</div>
+
+<div class="col-9">
+    {{Form::submit('Submit',['class'=>'btn btn-success btn-md btn-block'])}}
+    {!! Form::close() !!}
+</div>
     
 
 @endsection

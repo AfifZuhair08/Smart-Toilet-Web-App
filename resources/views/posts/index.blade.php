@@ -8,6 +8,8 @@
 </div>
 <hr>
 
+@include('inc.cpmessage')
+
 @if (count($posts) > 0)
     @foreach ($posts as $post)
         <div class="well">
@@ -24,7 +26,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                <p>{{$post->body}}</p>
+                <p>{!!$post->body!!}</p>
                 </div>
             </div>
         </div>
