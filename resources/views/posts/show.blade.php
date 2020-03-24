@@ -26,10 +26,10 @@
             {!!Form::close()!!}
         </div>
     </div>           
-    <div class="">
+    <div class="p-3 mb-2 bg-white text-dark">
         <p>{!!$post->body!!}</p>
-        <small>{{ $post->created_at}}</small>
     </div>
+    <small>{{ $post->created_at}}</small>
 </div>
 
 {{-- <a href="/posts/{{$post->id}}/edit" class="btn btn-default"> Edit </a>
