@@ -7,12 +7,12 @@
         <a href="/posts">Posts</a>
     </h1>
 </div>
+<hr>
 
 <div class="">
 
     <h2 class="h3 mb-0 text-black"><b>{{$post->title}}</b></h2>
     <small>{{ $post->created_at}}</small>
-    <hr>
     <div>
         <p>{{$post->body}}</p>
     </div>

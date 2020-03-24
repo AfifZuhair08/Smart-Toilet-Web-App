@@ -27,7 +27,7 @@ class PostsController extends Controller
                 // $posts = Post::orderBy('created_at','desc')->take(1)->get();
 
             // 
-                $posts = Post::orderBy('created_at','desc')->paginate();
+                $posts = Post::orderBy('created_at','desc')->paginate(3);
         // if using SQL query
             // $posts = DB::select('SELECT * FROM posts');
 

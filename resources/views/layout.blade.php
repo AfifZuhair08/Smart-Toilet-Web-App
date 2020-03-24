@@ -351,7 +351,7 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          @include('inc.cpmessage')
+          {{-- @include('inc.cpmessage') --}}
           @yield('main-content')
         
         </div>

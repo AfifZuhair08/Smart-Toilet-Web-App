@@ -6,6 +6,7 @@
     <h1 class="h3 mb-0 text-gray-800">Posts</h1>
     <a href="/posts/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-blog fa-sm text-white-50"></i>    Create New Post</a>
 </div>
+<hr>
 
 @if (count($posts) > 0)
     @foreach ($posts as $post)
