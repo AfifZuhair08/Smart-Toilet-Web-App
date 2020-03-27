@@ -24,3 +24,10 @@ Route::get('/recordservice','RecordServiceController@index');
 Route::get('/recordstate','RecordStateController@index');
 
 Route::resource('posts','PostsController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/logout', function(){
+//     Auth::logout();
+//     return Redirect::to('home');
+// });
