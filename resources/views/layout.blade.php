@@ -51,9 +51,21 @@
 
       <!-- Nav Item - Posts -->
       <li class="nav-item">
-        <a class="nav-link" href="/posts">
+        {{-- <a class="nav-link" href="/posts">
           <i class="fas fa-fw fa-blog"></i>
-          <span>Posts</span></a>
+          <span>Posts</span></a> --}}
+          <a class="nav-link collapsed" href="/posts" data-toggle="collapse" data-target="#collapsePost" aria-expanded="true" aria-controls="collapseTwo">
+            <!--<i class="fas fa-fw fa-cog"></i>-->
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Posts</span>
+          </a>
+          <div id="collapsePost" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">View all:</h6>
+              <a class="collapse-item" href="/posts">Broadcast</a>
+              <a class="collapse-item" href="/posts">My Posts</a>
+            </div>
+          </div>
       </li>
 
       <!-- Divider -->
@@ -66,7 +78,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="/monitor" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <!--<i class="fas fa-fw fa-cog"></i>-->
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Monitor</span>
@@ -82,7 +94,7 @@
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="/databaserecord" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-folder"></i>
           <span>Record</span>
         </a>
@@ -108,7 +120,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages1">
+        <a class="nav-link collapsed" href="/servicetask" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages1">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Service Task</span>
         </a>
@@ -124,7 +136,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true" aria-controls="collapsePages2">
+        <a class="nav-link collapsed" href="/manage" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true" aria-controls="collapsePages2">
           <i class="fas fa-fw fa-users"></i>
           <span>Manage Staff</span>
         </a>
@@ -323,21 +335,38 @@
             <li class="nav-item dropdown no-arrow">
               @guest
               
-              @else  
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }} <span class="caret"></span>
-              </a>
-
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              @else
+              <div class="nav-link btn-group">
+                {{-- User Name Button --}}
+                <button type="button" class="btn btn-success btn-md dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{ ucwords(Auth::user()->name) }}
+                </button>
+                
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Profile</a>
+                  <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
-                                  document.getElementById('logout-form').submit();">
-                      {{ __('Logout') }}
+                    document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
                   </a>
-
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                      @csrf
+                    @csrf
                   </form>
+                </div>
+
+                {{-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                      onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div> --}}
+
               </div>
               @endguest
             </li>

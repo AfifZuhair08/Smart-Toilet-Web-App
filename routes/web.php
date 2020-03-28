@@ -27,6 +27,7 @@ Route::resource('posts','PostsController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/posts/indexuser', 'PostsController@indexUser');
 // Route::get('/logout', function(){
 //     Auth::logout();
 //     return Redirect::to('home');

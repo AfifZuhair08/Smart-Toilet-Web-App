@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
 
 // if using DB query;
 // use DB;
@@ -63,6 +64,9 @@ class PostsController extends Controller
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
+
+        // using auth to gain the current logged in user->id
+        $post->user_id = auth()->user()->id;
         $post->save();
 
         return redirect('/posts')->with('success', 'Post Created');
@@ -130,4 +134,5 @@ class PostsController extends Controller
         return redirect('/posts')->with('success', 'Post has been removed');
 
     }
+
 }

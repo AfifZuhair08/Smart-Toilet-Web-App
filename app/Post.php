@@ -17,4 +17,9 @@ class Post extends Model
 
     // body
     public $mediumText = true;
+
+    // user_id
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }

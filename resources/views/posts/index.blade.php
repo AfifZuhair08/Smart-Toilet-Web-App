@@ -22,7 +22,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">
                     <a href="/posts/{{$post->id}}">{{$post->title}}</a>
                     </h6>
-                  <small>Written on {{$post->created_at}}</small>
+                  <small>Written on {{$post->created_at}} by <b>{{ucwords($post->user->name)}}</b></small>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
