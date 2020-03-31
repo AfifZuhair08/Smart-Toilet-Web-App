@@ -17,13 +17,20 @@ Route::get('/','DashboardController@index');
 
 Route::get('/dashboard','DashboardController@index');
 
-Route::get('/monitorTissue','MonitorTissueController@index');
-Route::get('/monitorSoap','MonitorSoapController@index');
+Route::resource('monitorTissue','SensorTissueController');
+Route::resource('monitorSoap','SensorSoapController');
 
 Route::get('/recordservice','RecordServiceController@index');
 Route::get('/recordstate','RecordStateController@index');
 
+Route::get('staffs','StaffController@index');
+Route::get('staffs/create','StaffController@create');
+Route::resource('staffs','StaffController');
+
 Route::resource('posts','PostsController');
+
+Route::resource('userposts','UserPostsController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

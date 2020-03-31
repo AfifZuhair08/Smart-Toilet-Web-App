@@ -33,10 +33,10 @@
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
-        <div class="sidebar-brand-icon rotate-n-15">
+        {{-- <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-cogs"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">Smart Toilet</div>
+        </div> --}}
+        <div class="sidebar-brand-text mx-3"><h5><b>Smart Toilet</b></h5></div>
       </a>
 
       <!-- Divider -->
@@ -44,9 +44,12 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="/dashboard">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+        <h5>
+          <a class="nav-link" href="/dashboard">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            Dashboard
+          </a>
+        </h5>
       </li>
 
       <!-- Nav Item - Posts -->
@@ -54,16 +57,17 @@
         {{-- <a class="nav-link" href="/posts">
           <i class="fas fa-fw fa-blog"></i>
           <span>Posts</span></a> --}}
+          <h5>
           <a class="nav-link collapsed" href="/posts" data-toggle="collapse" data-target="#collapsePost" aria-expanded="true" aria-controls="collapseTwo">
             <!--<i class="fas fa-fw fa-cog"></i>-->
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Posts</span>
-          </a>
+            {{-- <span>Posts</span> --}} Posts
+          </a></h5>
           <div id="collapsePost" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">View all:</h6>
               <a class="collapse-item" href="/posts">Broadcast</a>
-              <a class="collapse-item" href="/posts">My Posts</a>
+              <a class="collapse-item" href="/userposts">My Posts</a>
             </div>
           </div>
       </li>
@@ -73,16 +77,17 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Monitoring System
+        <h6>Monitoring System</h6>
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
+        <h5>
         <a class="nav-link collapsed" href="/monitor" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <!--<i class="fas fa-fw fa-cog"></i>-->
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Monitor</span>
-        </a>
+          {{-- <span>Monitor</span> --}}Monitor
+        </a></h5>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Dispenser:</h6>
@@ -94,10 +99,11 @@
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
+        <h5>
         <a class="nav-link collapsed" href="/databaserecord" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Record</span>
-        </a>
+          {{-- <span>Record</span> --}}Record
+        </a></h5>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Database Record:</h6>
@@ -114,16 +120,17 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Management
+        <h6>Manage</h6>
       </div>
 
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
+        <h5>
         <a class="nav-link collapsed" href="/servicetask" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages1">
           <i class="fas fa-fw fa-wrench"></i>
-          <span>Service Task</span>
-        </a>
+          {{-- <span>Service Task</span> --}}Service Task
+        </a></h5>
         <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Manage</h6>
@@ -136,15 +143,16 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
+        <h5>
         <a class="nav-link collapsed" href="/manage" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true" aria-controls="collapsePages2">
           <i class="fas fa-fw fa-users"></i>
-          <span>Manage Staff</span>
-        </a>
+          {{-- <span>Manage Staff</span> --}}Manage Staff
+        </a></h5>
         <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Manage</h6>
-            <a class="collapse-item" href="login.html">Staff Accounts</a>
-            <a class="collapse-item" href="register.html">Register</a>
+            <a class="collapse-item" href="/staffs">Staff Accounts</a>
+            <a class="collapse-item" href="/staffs/create">Register</a>
             <a class="collapse-item" href="forgot-password.html">Status</a>
           </div>
         </div>
@@ -158,11 +166,11 @@
       </li>-->
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Calendar & Reminder</span></a>
-      </li>
+      </li> --}}
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

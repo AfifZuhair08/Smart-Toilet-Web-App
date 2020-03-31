@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash; 
+use App\Staff;
 
-class MonitorTissueController extends Controller
+
+class StaffController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +16,9 @@ class MonitorTissueController extends Controller
      */
     public function index()
     {
-        return view('monitorTissue');
+        // $staffs = Staff::orderBy('id','desc')->get();
+        $staffs = Staff::orderBy('id','desc')->paginate(5);
+        return view('staffs.index')->with('staffs', $staffs);
     }
 
     /**
@@ -23,7 +28,8 @@ class MonitorTissueController extends Controller
      */
     public function create()
     {
-        //
+        return view('staffs.create');
+
     }
 
     /**
@@ -34,7 +40,28 @@ class MonitorTissueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required',
+            'phone' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        // create post
+        $post = new Staff;
+        $post->name = $request->input('name');
+        $post->username = $request->input('username');
+        $post->phone = $request->input('phone');
+        $post->email = $request->input('email');
+        //create hash password
+        $post->password = Hash::make($request->input('password'));
+
+        // using auth to gain the current logged in user->id
+        // $post->user_id = auth()->user()->id;
+        $post->save();
+
+        return redirect('/staffs')->with('success', 'Staff Created');
     }
 
     /**

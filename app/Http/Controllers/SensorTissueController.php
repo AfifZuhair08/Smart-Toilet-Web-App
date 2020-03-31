@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class MonitorSoapController extends Controller
+class SensorTissueController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class MonitorSoapController extends Controller
      */
     public function index()
     {
-        return view('monitorSoap');
+        return view('monitorTissue');
     }
 
     /**
