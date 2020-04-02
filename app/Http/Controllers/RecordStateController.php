@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\SensorTissue;
+use App\SensorSoap;
 
 class RecordStateController extends Controller
 {
@@ -13,7 +15,21 @@ class RecordStateController extends Controller
      */
     public function index()
     {
-        return view('recordstate');
+        $sensorStateTs = SensorTissue::orderBy('entryDate','desc')->paginate(3);
+        // $sensorStateSs = SensorSoap::orderBy('entryDate','desc')->paginate(3);
+        return view('sensorTissue.datarecord')->with('sensorStateTs', $sensorStateTs);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index2()
+    {
+        // $sensorStateTs = SensorTissue::orderBy('entryDate','desc')->paginate(3);
+        $sensorStateSs = SensorSoap::orderBy('entryDate','desc')->paginate(3);
+        return view('sensorSoap.datarecord')->with('sensorStateSs', $sensorStateSs);
     }
 
     /**

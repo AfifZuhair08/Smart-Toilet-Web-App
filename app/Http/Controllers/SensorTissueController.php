@@ -13,6 +13,16 @@ class SensorTissueController extends Controller
      */
     public function index()
     {
+        //return view('monitorTissue');
+    }
+
+    /**
+     * Display a listing of the resource.(LINE GRAPH)
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function graph()
+    {
         return view('monitorTissue');
     }
 

@@ -12,23 +12,32 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//DASHBOARD
 Route::get('/','DashboardController@index');
-
 Route::get('/dashboard','DashboardController@index');
 
-Route::resource('monitorTissue','SensorTissueController');
+//MONITOR TISSUE DISPENSER
+// Route::resource('monitorTissue','SensorTissueController');
+Route::get('monitorTissue','SensorTissueController@graph');
+
+//MONITOR SOAP DISPENSER
 Route::resource('monitorSoap','SensorSoapController');
 
+//RECORD DISPENSER STATE
+Route::get('/sensorTissue/datarecord','RecordStateController@index');
+Route::get('/sensorSoap/datarecord','RecordStateController@index2');
+
+//RECORD SERVICE ACTIVITY
 Route::get('/recordservice','RecordServiceController@index');
 Route::get('/recordstate','RecordStateController@index');
 
+//MANAGE STAFF
 Route::get('staffs','StaffController@index');
 Route::get('staffs/create','StaffController@create');
 Route::resource('staffs','StaffController');
 
+//POSTS
 Route::resource('posts','PostsController');
-
 Route::resource('userposts','UserPostsController');
 
 Auth::routes();

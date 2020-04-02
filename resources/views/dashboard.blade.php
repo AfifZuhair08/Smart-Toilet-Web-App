@@ -114,22 +114,24 @@
     @foreach ($posts as $post)
         <div class="well">
             
-            {{-- <h3>{{$post->title}}</h3>
-            <small>Written on {{$post->created_at}}</small> --}}
-
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">
-                    <a href="/posts/{{$post->id}}">{{$post->title}}</a>
-                    </h6>
-                  <small>Written on {{$post->created_at}} by <b>{{ucwords($post->user->name)}}</b></small>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                <p>{!!$post->body!!}</p>
-                </div>
+          {{-- <h3>{{$post->title}}</h3>
+          <small>Written on {{$post->created_at}}</small> --}}
+          <div class="card shadow mb-4">
+            <div class="card border-left-danger shadow h-100 py-2">
+              <!-- Card Header - Dropdown -->
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">
+                  <a href="/posts/{{$post->id}}">{{$post->title}}</a>
+                  </h6>
+                <small>Written on {{$post->created_at}} by <b>{{ucwords($post->user->name)}}</b></small>
+              </div>
+              
+              <!-- Card Body -->
+              <div class="card-body">
+              <p>{!!$post->body!!}</p>
+              </div>
             </div>
+          </div>
 
         </div>
     @endforeach
