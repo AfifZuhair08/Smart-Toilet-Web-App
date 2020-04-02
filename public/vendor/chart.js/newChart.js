@@ -11,7 +11,7 @@
 		},
 
 		ajaxGetMonthlyEntry: function () {
-			var urlPath =  'http://' + window.location.hostname + 'get_chart_data';
+			var urlPath =  'http://' + window.location.hostname + ':8000/get_chart_data';
 			var request = $.ajax( {
 				method: 'GET',
 				url: urlPath
