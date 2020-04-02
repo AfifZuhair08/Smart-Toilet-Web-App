@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\SensorTissue;
 
 class SensorTissueController extends Controller
 {
@@ -14,6 +15,56 @@ class SensorTissueController extends Controller
     public function index()
     {
         //return view('monitorTissue');
+    }
+
+    function getAllMonth(){
+        
+        $month_array = array();
+        $SensorTissues = SensorTissue::orderBy('entryDate','asc')->pluck('entryDate');
+        $SensorTissues = json_decode($SensorTissues);
+        
+        
+        if( !empty ($SensorTissues)){
+            foreach( $SensorTissues as $unformatted_date){
+                $date = new \DateTime( $unformatted_date);
+                $month_num = $date->format('m');
+                $month_name = $date->format('M');
+                $month_array[$month_num] = $month_name;
+            }
+        }
+        return $month_array;
+    }
+
+    function getCountMonthEntry($month){
+        // $month = 03;
+        $monthlyEntry = SensorTissue::whereMonth('entryDate',$month)->get()->count();
+        return $monthlyEntry;
+    }
+
+    function getMonthlyEntry(){
+        
+        // $monthlyEntryData_array = array();
+        $monthlyEntry_array = array();
+        $month_array = $this->getAllMonth();
+        $monthName_array = array();
+        if(!empty($month_array)){
+            foreach($month_array as $month_num => $month_name){
+                $monthlyEntry = $this->getCountMonthEntry($month_num);
+                array_push( $monthlyEntry_array, $monthlyEntry);
+                array_push( $monthName_array, $month_name);
+            }
+        }
+        // $month_array = $this->getAllMonth();
+        // return $monthlyEntry_array;
+        $max_num = max($monthlyEntry_array);
+        $max = round(($max_num + 10/2 ) / 10)*10;
+        $monthlyEntryData_array = array(
+            'months' => $monthName_array,
+            'monthly_entries' => $monthlyEntry_array,
+            'max' => $max,
+        );
+
+        return $monthlyEntryData_array;
     }
 
     /**

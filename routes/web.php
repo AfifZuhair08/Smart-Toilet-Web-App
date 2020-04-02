@@ -19,6 +19,12 @@ Route::get('/dashboard','DashboardController@index');
 //MONITOR TISSUE DISPENSER
 // Route::resource('monitorTissue','SensorTissueController');
 Route::get('monitorTissue','SensorTissueController@graph');
+Route::get('get_chart_data','SensorTissueController@getMonthlyEntry');
+Route::get('rtmTissue', function(){
+    return view('sensorTissue/rtmTissue');
+});
+// Route::get('test','SensorTissueController@getMonthlyEntry');
+
 
 //MONITOR SOAP DISPENSER
 Route::resource('monitorSoap','SensorSoapController');
