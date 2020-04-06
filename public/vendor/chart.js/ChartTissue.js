@@ -45,7 +45,7 @@
 						pointHoverBackgroundColor: "rgba(2,117,216,1)",
 						pointHitRadius: 20,
 						pointBorderWidth: 2,
-						data: response.monthly_entries, // The response got from the ajax request containing data for the completed jobs in the corresponding months
+						data: response.monthly_entries, // The response got from the ajax request containing data for the entries in the corresponding months
 					}],
 				},
 				options: {

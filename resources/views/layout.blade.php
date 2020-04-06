@@ -90,9 +90,13 @@
         </a></h5>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Dispenser:</h6>
+            <h6 class="collapse-header">Tissue Dispenser:</h6>
             <a class="collapse-item" href="/monitorTissue">Tissue</a>
+            <a class="collapse-item" href="/rtmTissue">Real-Time Data</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="collapse-header">Soap Dispenser:</h6>
             <a class="collapse-item" href="/monitorSoap">Soap</a>
+            <a class="collapse-item" href="/rtmSoap">Real-Time Data</a>
           </div>
         </div>
       </li>
@@ -212,6 +216,14 @@
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link active text-dark" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              @php  echo date('l, '); echo date('j F Y') @endphp
+              </a>
+            </li>
+            
+            <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
@@ -338,6 +350,8 @@
               </div>
             </li>
 
+            
+
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
@@ -457,7 +471,9 @@
 
   {{-- <script src="{{url( '/vendor/chart.js/Chart.min.js' )}}"></script> --}}
 
-  <script src="{{url( '/vendor/chart.js/newChart.js' )}}"></script>
+  <script src="{{url( '/vendor/chart.js/ChartTissue.js' )}}"></script>
+  <script src="{{url( '/vendor/chart.js/ChartSoap.js' )}}"></script>
+  <script src="{{url( '/vendor/chart.js/TissueChartToday.js' )}}"></script>
   {{-- <script src="/vendor/chart.js/newChart.js"></script> --}}
 
   <script type="text/javasript">

@@ -15,7 +15,7 @@ class RecordStateController extends Controller
      */
     public function index()
     {
-        $sensorStateTs = SensorTissue::orderBy('entryDate','desc')->paginate(3);
+        $sensorStateTs = SensorTissue::orderBy('entryDate','desc')->paginate(10);
         // $sensorStateSs = SensorSoap::orderBy('entryDate','desc')->paginate(3);
         return view('sensorTissue.datarecord')->with('sensorStateTs', $sensorStateTs);
     }
@@ -28,7 +28,7 @@ class RecordStateController extends Controller
     public function index2()
     {
         // $sensorStateTs = SensorTissue::orderBy('entryDate','desc')->paginate(3);
-        $sensorStateSs = SensorSoap::orderBy('entryDate','desc')->paginate(3);
+        $sensorStateSs = SensorSoap::orderBy('entryDate','desc')->paginate(10);
         return view('sensorSoap.datarecord')->with('sensorStateSs', $sensorStateSs);
     }
 

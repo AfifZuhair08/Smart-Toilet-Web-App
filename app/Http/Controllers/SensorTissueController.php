@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SensorTissue;
+use Carbon\Carbon;
+use DB;
 
 class SensorTissueController extends Controller
 {
@@ -17,6 +19,7 @@ class SensorTissueController extends Controller
         //return view('monitorTissue');
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
     function getAllMonth(){
         
         $month_array = array();
@@ -45,8 +48,9 @@ class SensorTissueController extends Controller
         
         // $monthlyEntryData_array = array();
         $monthlyEntry_array = array();
-        $month_array = $this->getAllMonth();
         $monthName_array = array();
+
+        $month_array = $this->getAllMonth();
         if(!empty($month_array)){
             foreach($month_array as $month_num => $month_name){
                 $monthlyEntry = $this->getCountMonthEntry($month_num);
@@ -58,6 +62,7 @@ class SensorTissueController extends Controller
         // return $monthlyEntry_array;
         $max_num = max($monthlyEntry_array);
         $max = round(($max_num + 10/2 ) / 10)*10;
+        
         $monthlyEntryData_array = array(
             'months' => $monthName_array,
             'monthly_entries' => $monthlyEntry_array,
@@ -65,6 +70,71 @@ class SensorTissueController extends Controller
         );
 
         return $monthlyEntryData_array;
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public function getAllTodayEntries(){
+        
+        // GET ALL TODAY'S ENTRY DATA
+        $todayentry = SensorTissue::whereDate('entryDate', '=', date('Y-m-d'))->get()->sortBy('entryDate');
+        // $todayentry_array = array();
+        // $todayentryDates = SensorTissue::orderBy('entryDate','asc')->take(30)->pluck('entryDate');
+        $todayentryDates = json_decode($todayentry);
+        return $todayentry;
+    }
+
+    public function getAllTodayEntriesDates(){
+        $todayentryDates = array();
+        $todayentryDates = SensorTissue::orderBy('entryDate','asc')->take(30)->pluck('entryDate');
+        $todayentryDates = json_decode($todayentryDates);
+
+        $todayentryValues = array();
+        $todayentryValues = SensorTissue::orderBy('entryDate','asc')->take(30)->pluck('sensorValue');
+        $todayentryValues = json_decode($todayentryValues);
+
+        $labels = $todayentryDates;
+        $data = $todayentryValues;
+        return response()->json(compact('labels','data'));
+
+        // if(!empty($todayentryDates)){
+        //     foreach($todayentryDates as $unformatted_date){
+        //         $date = new \DateTime($unformatted_date);
+        //         $entryDateY = $date->format('Y-m-d');
+        //         $todayentryDates[] = $entryDateY;
+        //     }
+        // }
+        // return $todayentryDates;
+    }
+
+    public function getAllTodayEntriesValues(){
+        // $todayentryValues_array = array();
+        $todayentryValues = SensorTissue::orderBy('entryDate','asc')->take(30)->pluck('sensorValue');
+        $todayentryValues = json_decode($todayentryValues);
+        return $todayentryValues;
+    }
+
+    public function getTodayEntries(){
+        $todayentry = array();
+        // $timezone = config('app.timezone');
+        // $todayentry = SensorTissue::whereDate('entryDate', '=', date('Y-m-d'))->get()->sortBy('entryDate');
+        // $todayentry = SensorTissue::whereDate('entryDate', Carbon::now($timezone))->get()->take(30)->sortBy('entryDate');
+        // $todayentry = SensorTissue::orderBy('entryDate','desc')->latest()->get(['entryDate','sensorValue'])->take(10);
+        // $todayentry = SensorTissue::select(DB::raw('entryDate'))->take(30)->pluck('entryDate');
+        $todayentry = SensorTissue::whereDate('entryDate', Carbon::today())->get()->take(30)->pluck('entryDate');
+        // $todayentry = SensorTissue::whereDate('entryDate',Carbon::now($timezone))->get(['entryDate','sensorValue'])->take(30)->sortBy('entryDate');
+        // $todayentry = SensorTissue::select(DB::raw('CONCAT(tsID, \' \',entryDate) AS tsIDnDate'),'sensorValue')->latest('tsID','asc')->take(10)->orderBy('tsIDnDate','asc')->get();
+        $todayentry = json_decode($todayentry);
+
+
+        // $id = SensorTissue::select('tsID')->take(10)->get()->sortBy('tsID');
+        // $value = SensorTissue::latest('sensorValue')->take(10)->get()->sortBy('sensorValue');
+        // $labels = $id->pluck('id');
+        // $data = $value->pluck('value');
+        // return response()->json(compact('labels','data'));
+        // return $value;
+        return $todayentry;
+        // return $todayentryData_array;
+
     }
 
     /**
