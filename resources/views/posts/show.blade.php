@@ -15,16 +15,20 @@
         <div class="mr-auto p-2">
             <h2 class="h3 mb-0 text-black"><b>{{$post->title}}</b></h2>
         </div>
-        <div class="p-2">
-            <a href="/posts/{{$post->id}}/edit" class="btn btn-success"> Edit </a>
-        </div>
-        <div class="p-2">
-            {!!Form::open(['action' => ['PostsController@destroy', $post->id],
-            'method' => 'POST', 'class' => 'pull-right'])!!}
-            {{Form::hidden('_method','DELETE')}}
-            {{Form::submit('Delete',['class' => 'btn btn-danger'])}}
-            {!!Form::close()!!}
-        </div>
+        @if(!Auth::guest())
+            @if(Auth::user()->id == $post->user_id)
+            <div class="p-2">
+                <a href="/posts/{{$post->id}}/edit" class="btn btn-success"> Edit </a>
+            </div>
+            <div class="p-2">
+                {!!Form::open(['action' => ['PostsController@destroy', $post->id],
+                'method' => 'POST', 'class' => 'pull-right'])!!}
+                {{Form::hidden('_method','DELETE')}}
+                {{Form::submit('Delete',['class' => 'btn btn-danger'])}}
+                {!!Form::close()!!}
+            </div>
+            @endif
+        @endif
     </div>
     <div class="p-3 mb-2 bg-white text-dark">
         <p>{!!$post->body!!}</p>

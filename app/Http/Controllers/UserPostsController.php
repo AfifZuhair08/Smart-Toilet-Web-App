@@ -9,13 +9,28 @@ use App\User;
 class UserPostsController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('userposts/userpost');
+        // return view('userposts/userpost');
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        // $user = Post::find($user_id);
+        // return $results;
+        return view('userposts/userpost')->with('posts', $user->posts);
     }
 
     /**

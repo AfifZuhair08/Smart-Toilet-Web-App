@@ -11,7 +11,7 @@
 		},
 
 		ajaxGetMonthlyEntry: function () {
-			var urlPath =  'http://' + window.location.hostname + ':8000/get_today_Tdata';
+			var urlPath =  'http://' + window.location.hostname + ':8000/get_daily15_Tdata';
 			var request = $.ajax( {
 				method: 'GET',
 				url: urlPath

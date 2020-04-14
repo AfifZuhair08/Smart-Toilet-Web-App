@@ -1,0 +1,8 @@
+// $timezone = config('app.timezone');
+        // $todayentry = SensorTissue::whereDate('entryDate', '=', date('Y-m-d'))->get()->sortBy('entryDate');
+        // $todayentry = SensorTissue::whereDate('entryDate', Carbon::now($timezone))->get()->take(30)->sortBy('entryDate');
+        // $todayentry = SensorTissue::orderBy('entryDate','desc')->latest()->get(['entryDate','sensorValue'])->take(10);
+        // $todayentry = SensorTissue::select(DB::raw('entryDate'))->take(30)->pluck('entryDate');
+
+        // $todayentry = SensorTissue::whereDate('entryDate',Carbon::now($timezone))->get(['entryDate','sensorValue'])->take(30)->sortBy('entryDate');
+        // $todayentry = SensorTissue::select(DB::raw('CONCAT(tsID, \' \',entryDate) AS tsIDnDate'),'sensorValue')->latest('tsID','asc')->take(10)->orderBy('tsIDnDate','asc')->get();

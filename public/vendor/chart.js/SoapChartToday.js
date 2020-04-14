@@ -11,7 +11,7 @@
 		},
 
 		ajaxGetMonthlyEntry: function () {
-			var urlPath =  'http://' + window.location.hostname + ':8000/get_chart_monthly_data';
+			var urlPath =  'http://' + window.location.hostname + ':8000/get_today_Sdata';
 			var request = $.ajax( {
 				method: 'GET',
 				url: urlPath
@@ -28,31 +28,39 @@
 		 */
 		createCompletedJobsChart: function ( response ) {
 
-			var ctx = document.getElementById("TissueChartMonthly");
+			var ctx = document.getElementById("ChartS_Today");
 			var myLineChart = new Chart(ctx, {
 				type: 'line',
 				data: {
-					labels: response.months, // The response got from the ajax request containing all month names in the database
+					labels: response.labels, // The response got from the ajax request containing all month names in the database
 					datasets: [{
-						label: "Total Entries",
+						label: "Sensor State",
 						lineTension: 0.3,
 						backgroundColor: "rgba(2,117,216,0.2)",
 						borderColor: "rgba(2,117,216,1)",
-						pointRadius: 5,
+						pointRadius: 3.8,
 						pointBackgroundColor: "rgba(2,117,216,1)",
 						pointBorderColor: "rgba(255,255,255,0.8)",
 						pointHoverRadius: 5,
 						pointHoverBackgroundColor: "rgba(2,117,216,1)",
 						pointHitRadius: 20,
 						pointBorderWidth: 2,
-						data: response.monthly_entries, // The response got from the ajax request containing data for the entries in the corresponding months
+						data: response.data, // The response got from the ajax request containing data for the entries in the corresponding months
 					}],
 				},
 				options: {
 					scales: {
 						xAxes: [{
+							scaleLabel: {
+								display: true,
+								labelString: 'Date/Time'
+							},
 							time: {
-								unit: 'date'
+								unit: 'time',
+								displayFormats: {
+									hour: 'h:mm a',
+									minute: 'h:mm a',
+								}
 							},
 							gridLines: {
 								display: false
@@ -62,9 +70,13 @@
 							}
 						}],
 						yAxes: [{
+							scaleLabel: {
+								display: true,
+								labelString: 'State Value'
+							},
 							ticks: {
 								min: 0,
-								max: response.max, // The response got from the ajax request containing max limit for y axis
+								max: 20, // The response got from the ajax request containing max limit for y axis
 								maxTicksLimit: 5
 							},
 							gridLines: {
@@ -73,7 +85,7 @@
 						}],
 					},
 					legend: {
-						display: false
+						display: true
 					}
 				}
 			});

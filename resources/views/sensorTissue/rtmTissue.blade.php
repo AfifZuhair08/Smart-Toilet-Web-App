@@ -17,7 +17,7 @@
         <div class="card-header">
             <i class="fa fa-area-chart"></i> Tissue Dispenser Entries Monthly </div>
         <div class="card-body">
-            <canvas id="myAreaChart2" width="100%" height="30"></canvas>
+            <canvas id="TissueChartMonthly" width="100%" height="30"></canvas>
         </div>
         <div class="card-footer small text-muted">Updated at @php  echo date('j F Y , h:i:s a' , time() ) @endphp</div>
     </div>

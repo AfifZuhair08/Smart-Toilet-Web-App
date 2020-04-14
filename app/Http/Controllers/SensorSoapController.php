@@ -73,12 +73,43 @@ class SensorSoapController extends Controller
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public function getTodayEntries(){
-        $timezone = config('app.timezone');
+        
         // $todayentry = SensorSoap::whereDate('entryDate', Carbon::now($timezone))->get()->take(30)->sortBy('entryDate');
-        $todayentry = SensorSoap::whereDate('entryDate',Carbon::now($timezone))->get(['entryDate','sensorValue'])->take(30)->sortBy('entryDate');
+        // $todayentry = SensorTissue::whereDate('entryDate', Carbon::today())->get()->take(30)->pluck('entryDate');
+        // $timezone = config('app.timezone');
+        // $todayentry = array();
+        // $todayentry = SensorSoap::whereDate('entryDate',Carbon::now($timezone))->get(['entryDate','sensorValue'])->take(30)->sortBy('entryDate');
+        // $todayentry = json_decode($todayentry);
+        // return $todayentry;
+
+        $todayentry = array();
+        $todayentry = SensorSoap::whereDate('entryDate', Carbon::today())->get()->take(30)->pluck('entryDate');
         $todayentry = json_decode($todayentry);
-        return $todayentry;
+
+        $todayentryValues = array();
+        // $todayentryValues = SensorTissue::orderBy('entryDate','asc')->take(30)->pluck('sensorValue');
+        $todayentryValues = SensorSoap::whereDate('entryDate', Carbon::today())->get()->take(30)->pluck('sensorValue');
+        $todayentryValues = json_decode($todayentryValues);
+
+        $labels = $todayentry;
+        $data = $todayentryValues;
+        return response()->json(compact('labels','data'));
     }
+
+    public function getAllDaily15Entries(){
+        $todayentryDates = array();
+        $todayentryDates = SensorSoap::orderBy('entryDate','asc')->take(30)->pluck('entryDate');
+        $todayentryDates = json_decode($todayentryDates);
+
+        $todayentryValues = array();
+        $todayentryValues = SensorSoap::orderBy('entryDate','asc')->take(30)->pluck('sensorValue');
+        $todayentryValues = json_decode($todayentryValues);
+
+        $labels = $todayentryDates;
+        $data = $todayentryValues;
+        return response()->json(compact('labels','data'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

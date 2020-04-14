@@ -3,21 +3,21 @@
     
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Record > Soap Dispenser State</h1>
+    <h1 class="h3 mb-0 text-gray-800">Record > Real-Time Tissue Dispenser State</h1>
     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 </div>
 <hr>
 <p>
-    This is the record of data send from the soap dispenser
+    This is the record of data send from the tissue dispenser
 </p>
 
-<div class="container">
+<div class="container-fluid">
     <!-- Area Chart Example-->
-    <div class="card mb-3">
+    <div class="card" style="width: 100rem;">
         <div class="card-header">
-            <i class="fa fa-area-chart"></i> Tissue Dispenser Entries Monthly </div>
+            <i class="fa fa-area-chart"></i> Tissue Dispenser State </div>
         <div class="card-body">
-            <canvas id="SoapChartMonthly" width="100%" height="30"></canvas>
+            <canvas id="ChartS_Today" width="180%" height="65"></canvas>
         </div>
         <div class="card-footer small text-muted">Updated at @php  echo date('j F Y , h:i:s a' , time() ) @endphp</div>
     </div>

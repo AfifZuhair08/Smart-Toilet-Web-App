@@ -12,6 +12,16 @@ use App\User;
 class PostsController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -94,6 +104,11 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+
+        //Check if user is authorized
+        if(auth()->user()->id !== $post->user_id){
+            return redirect('/posts')->with('error', 'Unauthorized action!');
+        }
         return view('posts.edit')->with('post', $post);
 
     }
@@ -130,8 +145,14 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+
+        //Check if user is authorized
+        if(auth()->user()->id !== $post->user_id){
+            return redirect('/posts')->with('error', 'Unauthorized action!');
+        }
+        
         $post->delete();
-        return redirect('/posts')->with('success', 'Post has been removed');
+        return redirect('/userposts')->with('success', 'Post has been removed');
 
     }
 

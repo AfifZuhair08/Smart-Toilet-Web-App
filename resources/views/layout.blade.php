@@ -92,11 +92,13 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Tissue Dispenser:</h6>
             <a class="collapse-item" href="/monitorTissue">Tissue</a>
-            <a class="collapse-item" href="/rtmTissue">Real-Time Data</a>
+            <a class="collapse-item" href="/rtmTissue">Monthly Entries</a>
+            <a class="collapse-item" href="/rtmTissueToday">Real-Time Data</a>
             <div class="dropdown-divider"></div>
             <h6 class="collapse-header">Soap Dispenser:</h6>
             <a class="collapse-item" href="/monitorSoap">Soap</a>
-            <a class="collapse-item" href="/rtmSoap">Real-Time Data</a>
+            <a class="collapse-item" href="/rtmSoap">Monthly Entries</a>
+            <a class="collapse-item" href="/rtmSoapToday">Real-Time Data</a>
           </div>
         </div>
       </li>
@@ -474,6 +476,8 @@
   <script src="{{url( '/vendor/chart.js/ChartTissue.js' )}}"></script>
   <script src="{{url( '/vendor/chart.js/ChartSoap.js' )}}"></script>
   <script src="{{url( '/vendor/chart.js/TissueChartToday.js' )}}"></script>
+  <script src="{{url( '/vendor/chart.js/SoapChartToday.js' )}}"></script>
+
   {{-- <script src="/vendor/chart.js/newChart.js"></script> --}}
 
   <script type="text/javasript">

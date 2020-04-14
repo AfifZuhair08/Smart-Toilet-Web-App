@@ -11,7 +11,7 @@
 		},
 
 		ajaxGetMonthlyEntry: function () {
-			var urlPath =  'http://' + window.location.hostname + ':8000/get_chart_data2';
+			var urlPath =  'http://' + window.location.hostname + ':8000/get_monthly_data';
 			var request = $.ajax( {
 				method: 'GET',
 				url: urlPath
@@ -28,7 +28,7 @@
 		 */
 		createCompletedJobsChart: function ( response ) {
 
-			var ctx = document.getElementById("myAreaChart3");
+			var ctx = document.getElementById("SoapChartMonthly");
 			var myLineChart = new Chart(ctx, {
 				type: 'line',
 				data: {
