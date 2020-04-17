@@ -60,6 +60,7 @@ Route::get('/recordstate','RecordStateController@index');
 //MANAGE STAFF
 Route::get('staffs','StaffController@index');
 Route::get('staffs/create','StaffController@create');
+Route::get('staffs/{id}/editToDelete','StaffController@editToDelete');
 Route::resource('staffs','StaffController');
 
 //POSTS

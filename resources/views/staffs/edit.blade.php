@@ -3,27 +3,20 @@
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Create New Staff Data</h1>
-</div>
-
-<div>
-    <a href="/staffs" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-        {{-- <i class="fas fa-blog fa-sm text-white-50"></i>     --}}
-        View All Staffs
-    </a>
+    <h1 class="h3 mb-0 text-gray-800">
+    <a href="/staffs/{{$staff->id}}"> < </a> Staffs - Edit
+    </h1>
 </div>
 <hr>
 
-@include('inc.cpmessage')
-
 <div class="col-9">
     {{-- Form to POST --}}
-    {!! Form::open(['action' => 'StaffController@store',
+    {!! Form::open(['action' => ['StaffController@update',$staff->id],
         'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
     
     <div class="form-group">
         {{Form::label('name','Full Name')}}
-        {{Form::text('name','',['class' => 'form-control','placeholder' => ''])}}
+        {{Form::text('name',$staff->name,['class' => 'form-control','placeholder' => ''])}}
     </div>
 </div>
 
@@ -38,29 +31,31 @@
 <div class="col-9">
     <div class="form-group">
         {{Form::label('username','Username')}}
-        {{Form::text('username','',['class' => 'form-control','placeholder' => ''])}}
+        {{Form::text('username',$staff->username,['class' => 'form-control','placeholder' => ''])}}
     </div>
     <div class="form-group">
         {{Form::label('phone','Phone')}}
-        {{Form::text('phone','',['class' => 'form-control','placeholder' => ''])}}
+        {{Form::text('phone',$staff->phone,['class' => 'form-control','placeholder' => ''])}}
     </div>
     <div class="form-group">
         {{Form::label('email','Email')}}
-        {{Form::text('email','',['class' => 'form-control','placeholder' => ''])}}
+        {{Form::text('email',$staff->email,['class' => 'form-control','placeholder' => ''])}}
     </div>
-    <div class="form-group">
+    {{-- <div class="form-group">
         {{Form::label('password','Password')}}
         {{Form::text('password','',['class' => 'form-control','placeholder' => ''])}}
-    </div>
+    </div> --}}
 </div>
 <div class="col">
 
 </div>
 
 <div class="col-9">
+    {{Form::hidden('_method','PUT')}}
     {{Form::submit('Submit',['class'=>'btn btn-success btn-md btn-block'])}}
     {!! Form::close() !!}
 </div>
-    
+
+
 
 @endsection

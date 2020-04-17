@@ -25,11 +25,18 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                <ul>
-                    <li>{{$staff->name}}</li>
-                    <li>{{$staff->phone}}</li>
-                    <li>{{$staff->email}}</li>
-                </ul>
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <img style="width:100%" src="/storage/staff/{{$staff->userImage}}" alt="">
+                        </div>
+                        <div class="col-sm-9">
+                            <ul>
+                                <li>{{$staff->name}}</li>
+                                <li>{{$staff->phone}}</li>
+                                <li>{{$staff->email}}</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
