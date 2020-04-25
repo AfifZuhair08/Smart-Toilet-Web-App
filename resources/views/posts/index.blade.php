@@ -7,6 +7,10 @@
     <a href="/posts/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-blog fa-sm text-white-50"></i>    Create New Post</a>
 </div>
 <hr>
+<a href="/userposts" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+    View My Posts
+</a>
+<p></p>
 
 @include('inc.cpmessage')
 

@@ -141,9 +141,11 @@
         <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Manage</h6>
-            <a class="collapse-item" href="login.html">Assign Staff</a>
-            <a class="collapse-item" href="register.html">Records</a>
-            <a class="collapse-item" href="forgot-password.html">Status</a>
+            <a class="collapse-item" href="/tasks/create">Create task</a>
+            <a class="collapse-item" href="/tasks">All Task</a>
+            <a class="collapse-item" href="/tasks/incomplete">In complete</a>
+            <a class="collapse-item" href="/tasks/completed">Completed</a>
+            <a class="collapse-item" href="/tasks">Status</a>
           </div>
         </div>
       </li>
@@ -218,11 +220,13 @@
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-
+            {{-- <div class="nav-link btn-group"> --}}
             <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link active text-dark" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              @php  echo date('l, '); echo date('j F Y') @endphp
-              </a>
+              <div class="nav-link btn-group">
+                  <button type="button" class="btn btn-default btn-md dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @php  echo date('l, '); echo date('j F Y') @endphp
+                  </button>
+              </div>
             </li>
             
             <div class="topbar-divider d-none d-sm-block"></div>
@@ -355,12 +359,20 @@
             
 
             <div class="topbar-divider d-none d-sm-block"></div>
+            
+            @guest
+
+            @else
+            <li class="nav-item dropdown no-arrow">
+              <div class="nav-link" style="width: 70px">
+                {{-- <img class="rounded-circle" style="width:4%" src="/storage/user/{{Auth::user()->userImage}}" alt=""> --}}
+                <img class="rounded-circle float-right" style="width: 100%" src="/storage/user/{{Auth::user()->userImage}}" alt="">
+              </div>
+            </li>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              @guest
               
-              @else
               <div class="nav-link btn-group">
                 {{-- User Name Button --}}
                 <button type="button" class="btn btn-success btn-md dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -368,7 +380,7 @@
                 </button>
                 
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="/users/{{Auth::user()->id}}">Profile</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
@@ -379,19 +391,6 @@
                     @csrf
                   </form>
                 </div>
-
-                {{-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                      onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </div> --}}
-
               </div>
               @endguest
             </li>

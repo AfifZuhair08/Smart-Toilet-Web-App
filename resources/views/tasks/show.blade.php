@@ -4,53 +4,21 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">
-        <a href="/posts">Posts</a>
+        <a href="/posts">Tasks</a>
     </h1>
 </div>
 <hr>
-<a href="/userposts" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-    View My Posts
-</a>
-<a href="/posts" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-    View All Broadcast Posts
+<a href="/tasks" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+    View All Task
 </a>
 <p></p>
-
-{{-- <div class="container">
-
-    <div class="d-flex">
-        <div class="mr-auto p-2">
-            <h2 class="h3 mb-0 text-black"><b>{{$post->title}}</b></h2>
-        </div>
-        @if(!Auth::guest())
-            @if(Auth::user()->id == $post->user_id)
-            <div class="p-2">
-                <a href="/posts/{{$post->id}}/edit" class="btn btn-success"> Edit </a>
-            </div>
-            <div class="p-2">
-                {!!Form::open(['action' => ['PostsController@destroy', $post->id],
-                'method' => 'POST', 'class' => 'pull-right'])!!}
-                {{Form::hidden('_method','DELETE')}}
-                {{Form::submit('Delete',['class' => 'btn btn-danger'])}}
-                {!!Form::close()!!}
-            </div>
-            @endif
-        @endif
-    </div>
-    <div class="p-3 mb-2 bg-white text-dark">
-        <p>{!!$post->body!!}</p>
-    </div>
-
-    <small>{{ $post->created_at}}</small>
-
-</div> --}}
 
 <div class="card">
     <div class="card-header">
         <div class="d-flex">
             {{-- post title --}}
             <div class="p-2 align-self-center">
-                <h2 class="text-dark">{{$post->title}}</h2>
+                <h2 class="text-dark">{{$task->task_title}}</h2>
             </div>
 
             {{-- buttons --}}
@@ -58,25 +26,25 @@
                 <div class="btn-group pt-3" role="group" aria-label="Button group with nested dropdown">
                     {{-- buttons --}}
                     @if(!Auth::guest())
-                        @if(Auth::user()->id == $post->user_id)
+                        @if(Auth::user()->id == $task->user_id)
                             {{-- button edit --}}
                             {{-- <div class="p-2"> --}}
-                                <a href="/posts/{{$post->id}}/edit" class="btn btn-success"> Edit </a>
+                                <a href="/tasks/{{$task->id}}/edit" class="btn btn-success"> Edit </a>
                             {{-- </div> --}}
                             {{-- button delete --}}
                             <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Delete this post
+                                Cancel task assignment
                             </button>
                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                 {{-- <a class="dropdown-item" href="/posts/{{$post->id}}">Yes, I'm sure</a> --}}
                                 <a>
-                                    {!!Form::open(['action' => ['PostsController@destroy', $post->id],
+                                    {!!Form::open(['action' => ['TaskController@destroy', $task->id],
                                 'method' => 'POST', 'class' => 'pull-right'])!!}
                                 {{Form::hidden('_method','DELETE')}}
                                 {{Form::submit('Yes, Im sure ',['class' => 'dropdown-item'])}}
                                 {!!Form::close()!!}
                                 </a>
-                                <a class="dropdown-item" href="#">Report this post</a>
+                                <a class="dropdown-item" href="#">Report this task</a>
                             </div>
                         @endif
                     @endif
@@ -102,23 +70,29 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="row">
-            <div class="p-3 mb-2 bg-white text-dark col-sm-9">
-                <div class="p-2">
-                    <p>{!!$post->body!!}</p>
-                    <small>Post created at : {{ $post->created_at}}</small>
-                </div>
-            </div>
+        <table class="table table-sm table-borderless">
+            <tr class="d-flex">
+                <th class="col-6">
+                    <p>Person in charge :
+                        <a href="/staffs/{{$task->staff_id}}"><b>{{ucwords($task->staff->name)}}</b></a>
+                    </p>
+                </th>
+                <th class="col-6" style="text-align: right">
+                    <p>
+                        Task status : 
+                        @if ($task->is_complete)
+                            <a href="#" class="btn btn-success"> Completed </a>
+                        @else
+                            <a href="#" class="btn btn-warning"> Incomplete </a>
+                        @endif
+                    </p>
+                </th>
+            </tr>
+        </table>
+        <div>
+            <p><b> Reminder message : </b>{{$task->task_description}}</p>
         </div>
     </div>
 </div>
-
-{{-- <a href="/posts/{{$post->id}}/edit" class="btn btn-default"> Edit </a>
-
-{!!Form::open(['action' => ['PostsController@destroy', $post->id],
-                'method' => 'POST', 'class' => 'pull-right'])!!}
-    {{Form::hidden('_method','DELETE')}}
-    {{Form::submit('Delete',['class' => 'btn btn-danger'])}}
-{!!Form::close()!!} --}}
 
 @endsection

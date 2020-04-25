@@ -17,7 +17,7 @@
         <div class="card-header">
             <i class="fa fa-area-chart"></i> Tissue Dispenser State </div>
         <div class="card-body">
-            <canvas id="ChartS_Today" width="180%" height="65"></canvas>
+            <canvas id="ChartS_Today" width="100%" height="35"></canvas>
         </div>
         <div class="card-footer small text-muted">Updated at @php  echo date('j F Y , h:i:s a' , time() ) @endphp</div>
     </div>

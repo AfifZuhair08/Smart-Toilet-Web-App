@@ -8,6 +8,11 @@
 
 </div>
 <hr>
+<a href="/posts" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+    View All Broadcast Posts
+</a>
+<p></p>
+
 @include('inc.cpmessage')
 
 <div class="container-fluid">
@@ -15,17 +20,22 @@
     <table class="table table-bordered">
         <thead class="thead-light">
             <tr>
-                <th>Post Title</th>
-                <th></th>
-                <th></th>
+                <th class="" style="width: 10%">Date</th>
+                <th class="" style="width: 50%">Post Title</th>
+                <th class="" style="width: 10%"></th>
+                <th class="text-center" style="width: 10%" colspan="2">Settings</th>
+                {{-- <th class="text-center" style="width: 10%">Delete</th> --}}
+                {{-- <th class="col-1"></th> --}}
             </tr>
         </thead>
         @foreach ($posts as $post)
         <tbody>
             <tr>
-                <td>{{$post->title}}</td>
-                <td><a href="/posts/{{$post->id}}/edit" class="btn btn-primary">Edit</a></td>
-                <td>
+                <td>{{$post->created_at}}</td>
+                <td><a href="/posts/{{$post->id}}" class="text-dark">{{$post->title}}</a></td>
+                <td class="text-center"><a href="/posts/{{$post->id}}">View</a></td>
+                <td class="text-center"><a href="/posts/{{$post->id}}/edit" class="btn btn-primary">Edit</a></td>
+                <td class="text-center">
                     {!! Form::open(['action' => ['PostsController@destroy', $post->id],'method' => 'POST', 'class' => 'pull-right']) !!}
                         {{Form::hidden('_method', 'DELETE')}}
                         {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}

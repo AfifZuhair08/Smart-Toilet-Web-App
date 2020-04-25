@@ -46,6 +46,11 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'staff' => [
+            'driver' => 'session',
+            'provider' => 'staffs',
+        ]
     ],
 
     /*
@@ -75,6 +80,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'staffs' => [
+            'driver' => 'eloquent',
+            'model' => App\Staff::class,
+        ]
     ],
 
     /*
@@ -99,6 +109,13 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+
+        'staffs' => [
+            'provider' => 'staffs',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+
     ],
 
     /*

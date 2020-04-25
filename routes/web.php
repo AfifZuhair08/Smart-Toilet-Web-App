@@ -63,9 +63,20 @@ Route::get('staffs/create','StaffController@create');
 Route::get('staffs/{id}/editToDelete','StaffController@editToDelete');
 Route::resource('staffs','StaffController');
 
+
+//USER ADMIN/MANAGER
+Route::resource('users','UsersController');
+
+
 //POSTS
 Route::resource('posts','PostsController');
 Route::resource('userposts','UserPostsController');
+
+//TASKS
+Route::get('/tasks/completed','TaskController@taskCompleted');
+Route::get('/tasks/incomplete','TaskController@taskInCompleted');
+Route::resource('tasks','TaskController');
+
 
 Auth::routes();
 

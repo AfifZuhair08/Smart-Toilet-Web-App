@@ -22,34 +22,18 @@
 
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-primary shadow h-100 py-2">
-        <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Toilet Services (Monthly)</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">305</div>
-            </div>
-            <div class="col-auto">
-              <i class="fas fa-calendar fa-2x text-gray-300"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
       <div class="card border-left-success shadow h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Expenses (Monthly)</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">RM300</div>
+              <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Toilet Services (Monthly)</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{$tasks ?? ''}}</div>
             </div>
             <div class="col-auto">
-              <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+              <i class="fas fa-calendar fa-2x text-gray-500"></i>
             </div>
           </div>
+          <a href="/tasks" class="stretched-link"></a>
         </div>
       </div>
     </div>
@@ -60,27 +44,29 @@
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Progress Complete (Weekly)</div>
+              <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Tasks Complete (Weekly)</div>
               <div class="row no-gutters align-items-center">
                 <div class="col-auto">
-                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                  {{-- <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ number_format(($tasks_complete ?? ''), 0)}}%</div> --}}
+                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ number_format(($tasks_complete ?? '0.0'), 0)}}%</div>
                 </div>
                 <div class="col">
                   <div class="progress progress-sm mr-2">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar bg-info" role="progressbar" style="width: {{$tasks_complete ?? ''}}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-auto">
-              <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+              <i class="fas fa-clipboard-list fa-2x text-gray-500"></i>
             </div>
           </div>
+          <a href="/tasks" class="stretched-link"></a>
         </div>
       </div>
     </div>
 
-    <!-- Pending Requests Card Example -->
+    {{-- <!-- Pending Requests Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
       <div class="card border-left-warning shadow h-100 py-2">
         <div class="card-body">
@@ -93,6 +79,42 @@
               <i class="fas fa-comments fa-2x text-gray-300"></i>
             </div>
           </div>
+        </div>
+      </div>
+    </div> --}}
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Tissue Dispenser Entries</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$sTissue ?? ''}}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-toilet-paper fa-2x text-gray-500"></i>
+            </div>
+          </div>
+          <a href="/rtmTissueToday" class="stretched-link"></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Soap Dispenser Entries</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$sSoap ?? ''}}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-tint fa-2x text-gray-500"></i>
+            </div>
+          </div>
+          <a href="/rtmSoapToday" class="stretched-link"></a>
         </div>
       </div>
     </div>
@@ -131,6 +153,7 @@
               <p>{!!$post->body!!}</p>
               </div>
             </div>
+            <a href="/posts/{{$post->id}}" class="stretched-link"></a>
           </div>
 
         </div>
@@ -140,6 +163,16 @@
   @endif
   </div>
 </div>
-  
+
+<script>
+  $(document).ready(function() {
+      // auto refresh page after 1 second
+      setInterval('refreshPage()', 1000);
+  });
+
+  function refreshPage() { 
+      location.reload(); 
+  }
+</script>
 
 @endsection
