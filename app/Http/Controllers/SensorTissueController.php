@@ -3,12 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use App\SensorTissue;
+use App\Http\Resources\SensorTissue as SensorTissueResource;
 use Carbon\Carbon;
 use DB;
 
 class SensorTissueController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +29,8 @@ class SensorTissueController extends Controller
     public function index()
     {
         //return view('monitorTissue');
+        $sensortissues = SensorTissue::paginate(15);
+        return SensorTissueResource::collection($sensortissues);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -86,6 +100,8 @@ class SensorTissueController extends Controller
     public function getAllDaily15Entries(){
         $todayentryDates = array();
         $todayentryDates = SensorTissue::orderBy('entryDate','asc')->take(15)->pluck('entryDate');
+        // $todayentryDates = SensorTissue::orderBy('entryDate','asc')->format("Y-m-d H:i:s")->take(15)->pluck('entryDate');
+        // $todayentryDates = $todayentryDates->format("Y-m-d H:i:s");
         $todayentryDates = json_decode($todayentryDates);
 
         $todayentryValues = array();
@@ -160,7 +176,8 @@ class SensorTissueController extends Controller
      */
     public function show($id)
     {
-        //
+        $sensortissue = SensorTissue::findOrFail($id);
+        return new SensorTissueResource($sensortissue);
     }
 
     /**

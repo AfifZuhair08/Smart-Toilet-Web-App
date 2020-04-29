@@ -18,6 +18,8 @@ Route::get('/dashboard','DashboardController@index');
 
 
 //MONITOR TISSUE DISPENSER
+// Send data
+// Route::post('sendTD','SensorTissueController@store');
 // Route::resource('monitorTissue','SensorTissueController');
 Route::get('monitorTissue','SensorTissueController@graph');
 // Graph Monthly Entry
@@ -32,6 +34,8 @@ Route::get('get_today_STdata','SensorTissueController@getTodayEntries');
 
 
 //MONITOR SOAP DISPENSER
+// Send data
+
 Route::resource('monitorSoap','SensorSoapController');
 // Route::get('get_today_Sdata','SensorSoapController@getTodayEntries');
 // Graph Monthly
@@ -75,6 +79,7 @@ Route::resource('userposts','UserPostsController');
 //TASKS
 Route::get('/tasks/completed','TaskController@taskCompleted');
 Route::get('/tasks/incomplete','TaskController@taskInCompleted');
+Route::get('/tasks/status','TaskController@status');
 Route::resource('tasks','TaskController');
 
 

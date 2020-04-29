@@ -88,6 +88,14 @@
                     </p>
                 </th>
             </tr>
+            <tr class="d-flex">
+                <th class="col-6">
+                <p>Assigned by : <a href="/users/{{$task->user_id}}"><b>{{ ucwords($task->user->name)}}</b></a></p>
+                </th>
+                <th class="col-6" style="text-align: right">
+                    <p>Date and time task assigned : {{$task->created_at}}</p>
+                </th>
+            </tr>
         </table>
         <div>
             <p><b> Reminder message : </b>{{$task->task_description}}</p>

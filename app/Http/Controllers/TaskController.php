@@ -10,6 +10,16 @@ use App\User;
 class TaskController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -19,7 +29,6 @@ class TaskController extends Controller
         $tasks = Task::orderBy('created_at','desc')->get();
         $tasks = Task::orderBy('created_at','desc')->paginate(3);
         return view('tasks.index')->with('tasks', $tasks);
-        // return $tasks;
     }
 
     /**
@@ -30,9 +39,7 @@ class TaskController extends Controller
     public function taskCompleted()
     {
         $tasks = Task::orderBy('created_at','desc')->where('is_complete', '1')->paginate(3);
-        // $tasks = Task::orderBy('created_at','desc')->paginate(3);
-        return view('tasks.index')->with('tasks', $tasks);
-        // return $tasks;
+        return view('tasks.completed')->with('tasks', $tasks);
     }
 
     /**
@@ -43,12 +50,13 @@ class TaskController extends Controller
     public function taskInCompleted()
     {
         $tasks = Task::orderBy('created_at','desc')->where('is_complete','0')->paginate(3);
-        // $tasks = Task::orderBy('created_at','desc')->paginate(3);
-        return view('tasks.index')->with('tasks', $tasks);
-        // return $tasks;
+        return view('tasks.incomplete')->with('tasks', $tasks);
     }
 
-
+    public function status(){
+        $tasks = Task::all();
+        return view('tasks.status')->with('tasks', $tasks);
+    }
 
     /**
      * Show the form for creating a new resource.

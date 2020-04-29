@@ -145,7 +145,7 @@
             <a class="collapse-item" href="/tasks">All Task</a>
             <a class="collapse-item" href="/tasks/incomplete">In complete</a>
             <a class="collapse-item" href="/tasks/completed">Completed</a>
-            <a class="collapse-item" href="/tasks">Status</a>
+            <a class="collapse-item" href="/tasks/status">Status</a>
           </div>
         </div>
       </li>
@@ -155,7 +155,7 @@
         <h5>
         <a class="nav-link collapsed" href="/manage" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true" aria-controls="collapsePages2">
           <i class="fas fa-fw fa-users"></i>
-          {{-- <span>Manage Staff</span> --}}Manage Staff
+          {{-- <span>Manage Staff</span> --}}Staffs
         </a></h5>
         <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -163,6 +163,21 @@
             <a class="collapse-item" href="/staffs">Staff Accounts</a>
             <a class="collapse-item" href="/staffs/create">Register</a>
             <a class="collapse-item" href="forgot-password.html">Status</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <h5>
+        <a class="nav-link collapsed" href="/manage" data-toggle="collapse" data-target="#collapsePages3" aria-expanded="true" aria-controls="collapsePages3">
+          <i class="fas fa-fw fa-users"></i>
+          {{-- <span>Manage Staff</span> --}}Managers
+        </a></h5>
+        <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Manage</h6>
+            <a class="collapse-item" href="/users">Manager List</a>
           </div>
         </div>
       </li>

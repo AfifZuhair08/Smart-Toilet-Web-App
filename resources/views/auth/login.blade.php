@@ -4,6 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Smart Toilet</h5>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-header">{{ __('Login as Administrator/Manager') }}</div>
 

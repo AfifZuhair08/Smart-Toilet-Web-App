@@ -17,3 +17,17 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// SENSORTISSUE
+// list 15
+Route::get('sensortissues','SensorTissueController@index');
+// list single one
+Route::get('sensortissue/{id}','SensorTissueController@show');
+// show all latest
+Route::get('get_daily15_Tdata','SensorTissueController@getAllDaily15Entries');
+// create new entry
+Route::post('sensortissue','SensorTissueController@store');
+// update
+Route::put('sensortissues','SensorTissueController@store');
+// delete
+Route::delete('sensortissues','SensorTissueController@destroy');
