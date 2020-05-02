@@ -8,11 +8,16 @@
 </div>
 <hr>
 <div class="container-fluid">
-    <a href="/tasks" class="d-block d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-task fa-sm text-white-50"></i>    All Task</a>
-    <a href="/tasks/incomplete" class="d-block d-sm-inline-block btn btn-sm btn-warning shadow-sm"><i class="fas fa-task fa-sm text-white-50"></i>    Incomplete</a>
-    <a href="/tasks/completed" class="d-block d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-task fa-sm text-white-50"></i>    Completed</a>
-    <a href="/tasks/create" class="d-block d-sm-inline-block btn btn-sm btn-default shadow-sm"><i class="fas fa-task fa-sm text-white-50"></i>    Create New Task</a>
-
+    @if (Auth::user()->role_id == 1) 
+        <a href="/tasks" class="d-block d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-task fa-sm text-white-50"></i>    All Task</a>
+        <a href="/tasks/incomplete" class="d-block d-sm-inline-block btn btn-sm btn-warning shadow-sm"><i class="fas fa-task fa-sm text-white-50"></i>    Incomplete</a>
+        <a href="/tasks/completed" class="d-block d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-task fa-sm text-white-50"></i>    Completed</a>
+        <a href="/tasks/create" class="d-block d-sm-inline-block btn btn-sm btn-default shadow-sm"><i class="fas fa-task fa-sm text-white-50"></i>    Create New Task</a>
+    @else
+        <a href="/tasks" class="d-block d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-task fa-sm text-white-50"></i>    All Task</a>
+        <a href="/tasks/incomplete" class="d-block d-sm-inline-block btn btn-sm btn-warning shadow-sm"><i class="fas fa-task fa-sm text-white-50"></i>    Incomplete</a>
+        <a href="/tasks/completed" class="d-block d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-task fa-sm text-white-50"></i>    Completed</a>
+    @endif
 <p></p>
 </div>
 
@@ -31,7 +36,7 @@
                     <h5 class="m-0 font-weight-bold text-primary">
                     <a href="/tasks/{{$task->id}}">{{$task->task_title}}</a>
                     </h5>
-                  <small>Assigned on {{$task->created_at}} by <b>{{ucwords($task->user->name)}}</b></small>
+                    <small>Assigned on {{$task->created_at}} by <a href="/users/{{$task->user_id}}"><b>{{ucwords($task->user->name)}}</b></a></small>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -39,7 +44,7 @@
                         <tr class="d-flex">
                             <th class="col-6">
                                 <p>Person in charge :
-                                    <a href="staffs/{{$task->staff_id}}"><b>{{ucwords($task->staff->name)}}</b></a>
+                                    <a href="/staffs/{{$task->staff_id}}"><b>{{ucwords($task->staff->name)}}</b></a>
                                 </p>
                             </th>
                             <th class="col-6" style="text-align: right">

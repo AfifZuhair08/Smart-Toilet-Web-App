@@ -7,9 +7,13 @@
     <a href="/posts/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-blog fa-sm text-white-50"></i>    Create New Post</a>
 </div>
 <hr>
-<a href="/userposts" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-    View My Posts
-</a>
+@if (Auth::user()->role_id == 1)
+    <a href="/userposts" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        View My Posts
+    </a>
+@else
+    
+@endif
 <p></p>
 
 @include('inc.cpmessage')
@@ -26,7 +30,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">
                     <a href="/posts/{{$post->id}}">{{$post->title}}</a>
                     </h6>
-                  <small>Written on {{$post->created_at}} by <b>{{ucwords($post->user->name)}}</b></small>
+                    <small>Written on {{$post->created_at}} by <a href="/users/{{ $post->user_id}}"><b>{{ucwords($post->user->name)}}</b></a></small>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">

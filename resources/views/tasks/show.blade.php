@@ -38,7 +38,7 @@
                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                 {{-- <a class="dropdown-item" href="/posts/{{$post->id}}">Yes, I'm sure</a> --}}
                                 <a>
-                                    {!!Form::open(['action' => ['TaskController@destroy', $task->id],
+                                {!!Form::open(['action' => ['TaskController@destroy', $task->id],
                                 'method' => 'POST', 'class' => 'pull-right'])!!}
                                 {{Form::hidden('_method','DELETE')}}
                                 {{Form::submit('Yes, Im sure ',['class' => 'dropdown-item'])}}

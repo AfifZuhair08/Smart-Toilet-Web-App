@@ -106,7 +106,7 @@
             <div class="p-3 mb-2 bg-white text-dark col-sm-9">
                 <div class="p-2">
                     <p>{!!$post->body!!}</p>
-                    <small>Post created at : {{ $post->created_at}}</small>
+                    <small>Post created at : {{ $post->created_at}} by <a href="/users/{{$post->user_id}}">{{ucwords($post->user->name)}}</a></small>
                 </div>
             </div>
         </div>

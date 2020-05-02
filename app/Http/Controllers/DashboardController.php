@@ -49,6 +49,28 @@ class DashboardController extends Controller
         // return view('dashboard');
     }
 
+    public function index2()
+    {
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        $posts = Post::orderBy('created_at','desc')->take(1)->get();
+
+        $tasks = Task::count();
+        $tasks_complete = Task::where('is_complete','=','1')->count();
+        $tasks_complete = $tasks_complete / $tasks *100;
+
+        $sTissue = SensorTissue::count();
+        $sSoap = SensorSoap::count();
+
+        return view('staff')
+        ->with('tasks', $tasks)
+        ->with('tasks_complete', $tasks_complete)
+        ->with('sTissue',$sTissue)
+        ->with('sSoap',$sSoap)
+        ->with('posts', $posts);
+        // return view('dashboard');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

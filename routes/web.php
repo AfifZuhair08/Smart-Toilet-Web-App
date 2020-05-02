@@ -12,9 +12,50 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//DASHBOARD
-Route::get('/','DashboardController@index');
-Route::get('/dashboard','DashboardController@index');
+
+Auth::routes();
+
+// MANAGER ROUTES
+Route::middleware(['auth', 'manager'])->group(function () {
+    //dashboard and home
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/','DashboardController@index');
+    Route::get('/dashboard','DashboardController@index')->name('dashboard');
+    //posts
+    Route::resource('userposts','UserPostsController');
+    //users
+    Route::get('usersam/{id}/editToDelete','UsersController@editToDelete');
+});
+
+// STAFF ROUTES
+Route::middleware(['auth', 'staff'])->group(function () {
+    //dashboard and home
+    Route::get('/staff','DashboardController@index2')->name('staff');
+});
+
+// GENERAL ROUTES
+Route::middleware(['auth'])->group(function () {
+    //tasks view
+    Route::get('/tasks/completed','TaskController@taskCompleted');
+    Route::get('/tasks/incomplete','TaskController@taskInCompleted');
+    Route::get('/tasks/status','TaskController@status');
+    //tasks
+    Route::resource('tasks','TaskController');
+    //posts
+    Route::resource('posts','PostsController');
+    //staffs
+    Route::get('staffs','StaffController@index');
+    Route::resource('staffs','StaffController');
+    //manage staffs
+    Route::get('staffs/create','StaffController@create');
+    Route::get('staffs/{id}/editToDelete','StaffController@editToDelete');
+    //dispenser records
+    Route::get('/sensorTissue/datarecord','RecordStateController@index');
+    Route::get('/sensorSoap/datarecord','RecordStateController@index2');
+    Route::get('/stafflist','UsersController@index2');
+
+
+});
 
 
 //MONITOR TISSUE DISPENSER
@@ -35,7 +76,6 @@ Route::get('get_today_STdata','SensorTissueController@getTodayEntries');
 
 //MONITOR SOAP DISPENSER
 // Send data
-
 Route::resource('monitorSoap','SensorSoapController');
 // Route::get('get_today_Sdata','SensorSoapController@getTodayEntries');
 // Graph Monthly
@@ -49,23 +89,9 @@ Route::get('get_today_SSdata','SensorSoapController@getTodayEntries');
 
 
 
-
-
-
-
-//RECORD DISPENSER STATE
-Route::get('/sensorTissue/datarecord','RecordStateController@index');
-Route::get('/sensorSoap/datarecord','RecordStateController@index2');
-
 //RECORD SERVICE ACTIVITY
 Route::get('/recordservice','RecordServiceController@index');
 Route::get('/recordstate','RecordStateController@index');
-
-//MANAGE STAFF
-Route::get('staffs','StaffController@index');
-Route::get('staffs/create','StaffController@create');
-Route::get('staffs/{id}/editToDelete','StaffController@editToDelete');
-Route::resource('staffs','StaffController');
 
 
 //USER ADMIN/MANAGER
@@ -73,19 +99,9 @@ Route::resource('users','UsersController');
 
 
 //POSTS
-Route::resource('posts','PostsController');
-Route::resource('userposts','UserPostsController');
-
-//TASKS
-Route::get('/tasks/completed','TaskController@taskCompleted');
-Route::get('/tasks/incomplete','TaskController@taskInCompleted');
-Route::get('/tasks/status','TaskController@status');
-Route::resource('tasks','TaskController');
 
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/posts/indexuser', 'PostsController@indexUser');
 // Route::get('/logout', function(){
 //     Auth::logout();

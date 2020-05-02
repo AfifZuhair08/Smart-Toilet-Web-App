@@ -4,13 +4,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card text-center">
+            <div class="card text-center text-white" style="height: 200px; background-color: rgba(0,0,0 ,1 );">
                 <div class="card-body">
-                    <h5 class="card-title">Smart Toilet</h5>
+                    {{-- <h5 class="card-title">Smart Toilet</h5> --}}
+                    <img class="text-center" src="/storage/dash/SmartToilet.png" alt="">
                 </div>
             </div>
             <div class="card">
-                <div class="card-header">{{ __('Login as Administrator/Manager') }}</div>
+                <div class="card-header text-white bg-dark">{{ __('Login as Administrator/Manager') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">

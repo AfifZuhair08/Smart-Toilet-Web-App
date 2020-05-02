@@ -1,5 +1,5 @@
-@extends('layout')
-@section('main-content')
+@extends('layoutstaff')
+@section('staff-content')
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -14,7 +14,7 @@
       </div>
   @endif
 
-  You are logged in as Admin
+  You are logged in as Staff
 </div>
 
 <!-- Content Row -->
@@ -26,7 +26,7 @@
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Toilet Services (Weekly)</div>
+              <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Toilet Services (Monthly)</div>
               <div class="h5 mb-0 font-weight-bold text-gray-800">{{$tasks ?? ''}}</div>
             </div>
             <div class="col-auto">
@@ -44,7 +44,7 @@
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Tasks Completed (Weekly)</div>
+              <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Tasks Complete (Weekly)</div>
               <div class="row no-gutters align-items-center">
                 <div class="col-auto">
                   {{-- <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ number_format(($tasks_complete ?? ''), 0)}}%</div> --}}
@@ -61,7 +61,7 @@
               <i class="fas fa-clipboard-list fa-2x text-gray-500"></i>
             </div>
           </div>
-          <a href="/tasks/completed" class="stretched-link"></a>
+          <a href="/tasks" class="stretched-link"></a>
         </div>
       </div>
     </div>

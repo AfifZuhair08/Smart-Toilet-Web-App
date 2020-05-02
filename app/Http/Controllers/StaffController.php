@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash; 
 use Illuminate\Support\Facades\Storage;
 use App\Staff;
+use App\User;
 
 
 class StaffController extends Controller
@@ -29,8 +30,9 @@ class StaffController extends Controller
     public function index()
     {
         // $staffs = Staff::orderBy('id','desc')->get();
-        $staffs = Staff::orderBy('id','desc')->paginate(5);
-        return view('staffs.index')->with('staffs', $staffs);
+        // $staffs = Staff::orderBy('id','desc')->paginate(5);
+        $users = User::orderBy('id','desc')->where('role_id','=','2')->paginate(5);
+        return view('staffs.index')->with('users', $users);
     }
 
     /**
@@ -78,18 +80,19 @@ class StaffController extends Controller
         }
 
         // create post
-        $post = new Staff;
-        $post->name = $request->input('name');
-        $post->userImage = $filenametostore;
-        $post->username = $request->input('username');
-        $post->phone = $request->input('phone');
-        $post->email = $request->input('email');
+        $user = new User;
+        $user->name = $request->input('name');
+        $user->userImage = $filenametostore;
+        $user->username = $request->input('username');
+        $user->phone = $request->input('phone');
+        $user->email = $request->input('email');
         //create hash password
-        $post->password = Hash::make($request->input('password'));
+        $user->password = Hash::make($request->input('password'));
+        $user->role_id = '2';
 
         // using auth to gain the current logged in user->id
         // $post->user_id = auth()->user()->id;
-        $post->save();
+        $user->save();
 
         return redirect('/staffs')->with('success', 'Staff Created');
     }
@@ -102,8 +105,8 @@ class StaffController extends Controller
      */
     public function show($id)
     {
-        $staff = Staff::find($id);
-        return view('staffs.show')->with('staff', $staff);
+        $user = User::find($id);
+        return view('staffs.show')->with('user', $user);
     }
 
     /**

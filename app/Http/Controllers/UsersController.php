@@ -5,20 +5,95 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash; 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Input, Redirect;
+use Auth;
 use App\User;
 
 
 class UsersController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    // /**
+    //  * Create a new controller instance.
+    //  *
+    //  * @return void
+    //  */
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
+    // LOGIN
+    public function login()
     {
-        $this->middleware('auth');
+        if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
+            $user = Auth::user();
+            $success['token'] = $user->createToken('appToken')->accessToken;
+           //After successfull authentication, notice how I return json parameters
+            return response()->json([
+              'success' => true,
+              'token' => $success,
+              'user' => $user
+          ]);
+        } else {
+            //if authentication is unsuccessfull, notice how I return json parameters
+             return response()->json([
+                'success' => false,
+                'message' => 'Invalid Email or Password',
+            ], 401);
+        }
     }
+
+    /**
+     * Register api.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            // 'phone' => 'required|unique:users|regex:/(0)[0-9]{10}/',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+          return response()->json([
+            'success' => false,
+            'message' => $validator->errors(),
+          ], 401);
+        }
+
+        $input = $request->all();
+        $input['password'] = bcrypt($input['password']);
+        $user = User::create($input);
+        $success['token'] = $user->createToken('appToken')->accessToken;
+        return response()->json([
+          'success' => true,
+          'token' => $success,
+          'user' => $user
+      ]);
+    }
+
+    // LOGOUT
+    public function logout(Request $res)
+    {
+      if (Auth::user()) {
+        $user = Auth::user()->accessToken;
+        $user->revoke();
+
+        return response()->json([
+          'success' => true,
+          'message' => 'Logout successfully'
+        ]);
+      }else {
+        return response()->json([
+          'success' => false,
+          'message' => 'Unable to Logout'
+        ]);
+      }
+     }
 
     /**
      * Display a listing of the resource.
@@ -27,8 +102,14 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id','desc')->paginate(5);
+        $users = User::orderBy('id','desc')->where('role_id','=','1')->paginate(5);
         return view('usersam.index')->with('users', $users);
+    }
+
+    public function index2()
+    {
+        $users = User::orderBy('id','desc')->where('role_id','=','2')->paginate(5);
+        return view('staffs.index')->with('users', $users);
     }
 
     /**
@@ -89,7 +170,12 @@ class UsersController extends Controller
         // $post->user_id = auth()->user()->id;
         $user->save();
 
-        return redirect('/users')->with('success', 'Manager Created');
+        if ($user->role_id == 1) {
+            return redirect('/users')->with('success', 'Manager Created');        
+        } else {
+            return redirect('/staffs')->with('success', 'Staff Created');;
+        }
+          
     }
 
     /**
@@ -167,7 +253,23 @@ class UsersController extends Controller
         $user->email = $request->input('email');
         $user->save();
 
-        return redirect('/users')->with('success', 'Managers details has been updated');
+        if ($user->role_id == 1) {
+            return redirect('/users')->with('success', 'Manager details has been updated');        
+        } else {
+            return redirect('/staffs')->with('success', 'Staff details has been updated');;
+        }
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editToDelete(Request $request, $id)
+    {
+        $user = User::find($id);
+        return view('usersam.editToDelete')->with('user', $user);
     }
 
     /**

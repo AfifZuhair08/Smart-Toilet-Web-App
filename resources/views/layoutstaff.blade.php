@@ -67,7 +67,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">View all:</h6>
               <a class="collapse-item" href="/posts">Broadcast</a>
-              <a class="collapse-item" href="/userposts">My Posts</a>
+              {{-- <a class="collapse-item" href="/userposts">My Posts</a> --}}
             </div>
           </div>
       </li>
@@ -141,7 +141,6 @@
         <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Manage</h6>
-            <a class="collapse-item" href="/tasks/create">Create task</a>
             <a class="collapse-item" href="/tasks">All Task</a>
             <a class="collapse-item" href="/tasks/incomplete">In complete</a>
             <a class="collapse-item" href="/tasks/completed">Completed</a>
@@ -159,11 +158,11 @@
         </a></h5>
         <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Manage</h6>
+            {{-- <h6 class="collapse-header">Manage</h6> --}}
             <a class="collapse-item" href="/staffs">Staff Accounts</a>
-            {{-- <a class="collapse-item" href="/stafflist">Staff List</a> --}}
+            <a class="collapse-item" href="/stafflist">Staff List</a>
             <a class="collapse-item" href="/staffs/create">Register</a>
-            <a class="collapse-item" href="/staffs">Status</a>
+            <a class="collapse-item" href="forgot-password.html">Status</a>
           </div>
         </div>
       </li>
@@ -419,7 +418,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
           {{-- @include('inc.cpmessage') --}}
-          @yield('main-content')
+          @yield('staff-content')
         
         </div>
         <!-- /.container-fluid -->

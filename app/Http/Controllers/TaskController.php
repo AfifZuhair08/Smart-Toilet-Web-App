@@ -6,6 +6,7 @@ use App\Task;
 use Illuminate\Http\Request;
 use App\Staff;
 use App\User;
+use Auth;
 
 class TaskController extends Controller
 {
@@ -26,9 +27,10 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::orderBy('created_at','desc')->get();
+        // $tasks = Task::orderBy('created_at','desc')->get();
         $tasks = Task::orderBy('created_at','desc')->paginate(3);
-        return view('tasks.index')->with('tasks', $tasks);
+        return view('tasks.index', compact('tasks'));
+        // return $tasks;
     }
 
     /**
@@ -68,9 +70,13 @@ class TaskController extends Controller
         // $staffs = Staff::get()->pluck('name','id')->toArray();
         // return view('tasks.create')->with(compact('staffs'));
         // return $staffs;
+        if (Auth::user()->role_id == 2) {
+            return redirect()->route('staff');
+        }
+        $users = User::select('name','id')->where('role_id','=','2')->get();
 
-        $staffs = Staff::all(['id', 'name']);
-        return view('tasks.create', compact('staffs',$staffs));
+        return view('tasks.create', compact('users'));
+        // return $users;
     }
 
     /**
@@ -84,20 +90,27 @@ class TaskController extends Controller
         $this->validate($request,[
             'task_title' => 'required',
             'task_description' => 'required',
-            'staff_id' => 'required',
+            'user_id' => 'required',
+        ],[
+            'task_title.required' => 'Title is empty',
+            'task_description.required' => 'Description is empty',
+            'user_id.required' => 'Assigning available staff is required'
         ]);
 
         // create post
         $tasks = new Task;
         $tasks->task_title = $request->input('task_title');
         $tasks->task_description = $request->input('task_description');
-        $tasks->staff_id = $request->input('staff_id');
         $tasks->is_complete = false;
         // using auth to gain the current logged in user->id
-        $tasks->user_id = auth()->user()->id;
+        // $category->user()->associate($request->user());
+        $tasks->staff_id = $request->input('user_id');
+        // $tasks->manager_id = auth()->user()->id;
+        $tasks->user()->associate($request->user());
+
         $tasks->save();
 
-        return redirect('/tasks/create')->with('success', 'Tasks succesfully created');
+        return redirect('/tasks')->with('success', 'Tasks succesfully created');
     }
 
     /**
@@ -118,9 +131,16 @@ class TaskController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)
+    public function edit($id)
     {
-        //
+        $task = Task::find($id);
+
+        //Check if user is authorized
+        if(auth()->user()->id !== $task->user_id){
+            return redirect('/tasks')->with('error', 'Unauthorized action!');
+        }
+        $users = User::select('name','id')->where('role_id','=','2')->get();
+        return view('tasks.edit')->with('task', $task)->with('users',$users);
     }
 
     /**
@@ -130,9 +150,32 @@ class TaskController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'task_title' => 'required',
+            'task_description' => 'required',
+            'user_id' => 'required',
+        ],[
+            'task_title.required' => 'Title is empty',
+            'task_description.required' => 'Description is empty',
+            'user_id.required' => 'Assigning available staff is required'
+        ]);
+
+        // create post
+        $tasks = Task::find($id);
+        $tasks->task_title = $request->input('task_title');
+        $tasks->task_description = $request->input('task_description');
+        $tasks->is_complete = false;
+        // using auth to gain the current logged in user->id
+        // $category->user()->associate($request->user());
+        $tasks->staff_id = $request->input('user_id');
+        // $tasks->manager_id = auth()->user()->id;
+        $tasks->user()->associate($request->user());
+
+        $tasks->save();
+
+        return redirect('/tasks')->with('success', 'Tasks has been edited');
     }
 
     /**
@@ -141,8 +184,16 @@ class TaskController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy($id)
     {
-        //
+        $task = Task::find($id);
+
+        //Check if user is authorized
+        if(auth()->user()->id !== $task->user_id){
+            return redirect('/tasks')->with('error', 'Unauthorized action!');
+        }
+        
+        $task->delete();
+        return redirect('/tasks')->with('success', 'Task has been removed');
     }
 }

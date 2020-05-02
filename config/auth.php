@@ -38,19 +38,19 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => ['users','staffs'],
         ],
 
         'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
-            'hash' => false,
+            'driver' => 'passport',
+            'provider' => ['users','staffs'],
+            // 'hash' => false,
         ],
 
-        'staff' => [
-            'driver' => 'session',
-            'provider' => 'staffs',
-        ]
+        // 'staff' => [
+        //     'driver' => 'session',
+        //     'provider' => 'staffs',
+        // ],
     ],
 
     /*

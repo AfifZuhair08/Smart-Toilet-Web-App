@@ -33,7 +33,7 @@
         <tbody>
             <tr class="d-flex">
                 <th class="col-5">{{$task->task_title}}</th>
-                <th class="col-sm-2">{{$task->staff->name}}</th>
+                <th class="col-sm-2">{{ ucwords($task->staff->name)}}</th>
                 <th class="col-sm-2">{{ ucwords($task->user->name)}}</th>
                 <th class="col-sm-1">
                     @if ($task->is_complete)
