@@ -68,6 +68,9 @@ class PostsController extends Controller
         $this->validate($request,[
             'title' => 'required',
             'body' => 'required',
+        ],[
+            'title.required' => 'Title should be filled',
+            'body.required' => 'Post body should be filled'
         ]);
 
         // create post
@@ -125,6 +128,9 @@ class PostsController extends Controller
         $this->validate($request,[
             'title' => 'required',
             'body' => 'required',
+        ],[
+            'title.required' => 'Title should be filled',
+            'body.required' => 'Post body should be filled'
         ]);
 
         // create post

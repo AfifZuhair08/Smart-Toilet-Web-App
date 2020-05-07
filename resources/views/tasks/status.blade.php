@@ -32,7 +32,7 @@
         @foreach ($tasks as $task)
         <tbody>
             <tr class="d-flex">
-                <th class="col-5">{{$task->task_title}}</th>
+                <th class="col-5"><a href="/tasks/{{$task->id}}" class="text-dark">{{$task->task_title}}</a></th>
                 <th class="col-sm-2">{{ ucwords($task->staff->name)}}</th>
                 <th class="col-sm-2">{{ ucwords($task->user->name)}}</th>
                 <th class="col-sm-1">

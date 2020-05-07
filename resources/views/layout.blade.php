@@ -163,7 +163,7 @@
             <a class="collapse-item" href="/staffs">Staff Accounts</a>
             {{-- <a class="collapse-item" href="/stafflist">Staff List</a> --}}
             <a class="collapse-item" href="/staffs/create">Register</a>
-            <a class="collapse-item" href="/staffs">Status</a>
+            {{-- <a class="collapse-item" href="/staffs">Status</a> --}}
           </div>
         </div>
       </li>

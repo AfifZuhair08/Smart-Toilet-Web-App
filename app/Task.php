@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+    // Table name
+    protected $table = 'tasks';
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -14,6 +17,9 @@ class Task extends Model
     public $casts = [
         'is_complete' => 'boolean',
     ];
+
+    // Primary Key
+    public $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.

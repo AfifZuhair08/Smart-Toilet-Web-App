@@ -19,15 +19,23 @@ use Illuminate\Http\Request;
 // });
 
 Route::group(['prefix' => 'v1'], function () {
-    Route::post('/login', 'UsersController@login');
-    Route::post('/register', 'UsersController@register');
-    Route::get('/logout', 'UsersController@logout')->middleware('auth:api');
-});
+    
+    Route::post('/login', 'MobileAccessController@login');
+    Route::post('/register', 'MobileAccessController@register');//Available only for testing purposes
+    Route::get('/logout', 'MobileAccessController@logout');
 
-Route::group(['prefix' => 'v2'], function () {
-    Route::post('/login', 'MobileAppController@login');
-    Route::post('/register', 'MobileAppController@register');
-    Route::get('/logout', 'MobileAppController@logout')->middleware('auth:api');
+    Route::post('/userProfile', 'MobileModelController@userProfile');
+
+    Route::post('/tV','MobileModelController@tasksViewById');
+
+    Route::post('/tD','MobileModelController@tissueDispenserLatest');
+    Route::post('/tDList','MobileModelController@tissueDispenserList');
+    Route::post('/tS','MobileModelController@soapDispenserLatest');
+    Route::post('/tSList','MobileModelController@soapDispenserList');
+
+    Route::post('/sensorT','MobileResponseController@tissueDispenserEntry');
+    Route::post('/sensorS','MobileResponseController@soapDispenserEntry');
+
 });
 
 // // SENSORTISSUE

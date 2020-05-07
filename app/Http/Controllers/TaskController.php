@@ -92,8 +92,8 @@ class TaskController extends Controller
             'task_description' => 'required',
             'user_id' => 'required',
         ],[
-            'task_title.required' => 'Title is empty',
-            'task_description.required' => 'Description is empty',
+            'task_title.required' => 'Title should be filled',
+            'task_description.required' => 'Description should be filled',
             'user_id.required' => 'Assigning available staff is required'
         ]);
 
@@ -157,8 +157,8 @@ class TaskController extends Controller
             'task_description' => 'required',
             'user_id' => 'required',
         ],[
-            'task_title.required' => 'Title is empty',
-            'task_description.required' => 'Description is empty',
+            'task_title.required' => 'Title should be filled',
+            'task_description.required' => 'Description should be filled',
             'user_id.required' => 'Assigning available staff is required'
         ]);
 

@@ -28,9 +28,12 @@ class UserPostsController extends Controller
         // return view('userposts/userpost');
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
+
+        
         // $user = Post::find($user_id);
         // return $results;
         return view('userposts/userpost')->with('posts', $user->posts);
+        // ->orderBy('created_at','desc')
     }
 
     /**
