@@ -4,7 +4,9 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">
-        <a href="/posts">Tasks</a>
+        {{-- <a href="/tasks"> --}}
+            Tasks
+        {{-- </a> --}}
     </h1>
 </div>
 <hr>
@@ -48,23 +50,6 @@
                             </div>
                         @endif
                     @endif
-                    {{-- <div class="btn-group pt-3" role="group" aria-label="Button group with nested dropdown">
-                        <a href="/posts/{{$posts->id}}/edit" class="btn btn-primary"> Edit </a>
-                    
-                        <div class="btn-group" role="group">
-                            <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Delete this post
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                {!!Form::open(['action' => ['PostsController@destroy', $post->id],
-                                'method' => 'POST', 'class' => 'pull-right'])!!}
-                                {{Form::hidden('_method','DELETE')}}
-                                {{Form::submit('Delete',['class' => 'dropdown-item'])}}
-                                {!!Form::close()!!}
-                            <a class="dropdown-item" href="#">Report this post</a>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
         </div>
@@ -77,9 +62,22 @@
                         <a href="/staffs/{{$task->staff_id}}"><b>{{ucwords($task->staff->name)}}</b></a>
                     </p>
                 </th>
-                <th class="col-6" style="text-align: right">
+                <th class="col-3">
+                    <p>Date & time task assigned : </p>
+                </th>
+                <th class="col-3" style="text-align: center">
+                    <p>Status</p>
+                </th>
+            </tr>
+            <tr class="d-flex">
+                <th class="col-6">
+                <p>Assigned by : <a href="/users/{{$task->user_id}}"><b>{{ ucwords($task->user->name)}}</b></a></p>
+                </th>
+                <th class="col-3">
+                    {{$task->created_at}}
+                </th>
+                <th class="col-3" style="text-align: center">
                     <p>
-                        Task status : 
                         @if ($task->is_complete)
                             <a href="#" class="btn btn-success"> Completed </a>
                         @else
@@ -89,17 +87,54 @@
                 </th>
             </tr>
             <tr class="d-flex">
-                <th class="col-6">
-                <p>Assigned by : <a href="/users/{{$task->user_id}}"><b>{{ ucwords($task->user->name)}}</b></a></p>
-                </th>
-                <th class="col-6" style="text-align: right">
-                    <p>Date and time task assigned : {{$task->created_at}}</p>
+                <th>
+                    <p>Reminder message : {{$task->task_description}}</p>
                 </th>
             </tr>
+            
         </table>
         <div>
-            <p><b> Reminder message : </b>{{$task->task_description}}</p>
         </div>
+    </div>
+    <hr>
+    <div class="card-header">
+        <h5>
+            <b>Record Service</b>
+        </h5>
+    </div>
+    <div class="card-body">
+        <table class="table table-sm table-borderless">
+            @if (count($records) > 0)
+            @foreach ($records as $record)
+                <tr class="d-flex">
+                    <th class="col-6">
+                        <p>Record Service : {{$record->additional_notes}}</p>
+                    </th>
+                    <th class="col-6" style="text-align: right">
+                        <p>Date Completed : {{$record->created_at}}</p>
+                    </th>
+                </tr>
+                <tr class="d-flex">
+                    <th class="col-6">
+
+                    </th>
+                    <th class="col-6" style="text-align: right">
+                        <p>
+                            Task status : 
+                            @if ($record->is_checked)
+                                <a href="#" class="btn btn-success"> Checked </a>
+                            @else
+                                <a href="#" class="btn btn-warning"> Not-checked </a>
+                            @endif
+                        </p>
+                    </th>
+                </tr>
+            @endforeach
+            {{$records->links()}}
+            @else
+                <p>No record found</p>
+            @endif
+        </table>
     </div>
 </div>
 

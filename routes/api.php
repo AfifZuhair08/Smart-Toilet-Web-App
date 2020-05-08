@@ -36,6 +36,8 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('/sensorT','MobileResponseController@tissueDispenserEntry');
     Route::post('/sensorS','MobileResponseController@soapDispenserEntry');
 
+    Route::post('/recordService','MobileResponseController@recordService');
+
 });
 
 // // SENSORTISSUE

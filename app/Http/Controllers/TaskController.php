@@ -6,6 +6,8 @@ use App\Task;
 use Illuminate\Http\Request;
 use App\Staff;
 use App\User;
+use App\RecordService;
+
 use Auth;
 
 class TaskController extends Controller
@@ -102,6 +104,8 @@ class TaskController extends Controller
         $tasks->task_title = $request->input('task_title');
         $tasks->task_description = $request->input('task_description');
         $tasks->is_complete = false;
+        $tasks->record_service_id = false;
+
         // using auth to gain the current logged in user->id
         // $category->user()->associate($request->user());
         $tasks->staff_id = $request->input('user_id');
@@ -122,7 +126,13 @@ class TaskController extends Controller
     public function show($id)
     {
         $task = Task::find($id);
-        return view('tasks.show')->with('task', $task);;
+        $records = RecordService::orderBy('created_at','desc')->where('task_id', $id )->paginate(2);
+        
+        return view('tasks.show')
+        ->with('task', $task)
+        ->with('records', $records);
+
+        // return $records;
     }
 
     /**
@@ -167,6 +177,8 @@ class TaskController extends Controller
         $tasks->task_title = $request->input('task_title');
         $tasks->task_description = $request->input('task_description');
         $tasks->is_complete = false;
+        $tasks->record_service_id = false;
+
         // using auth to gain the current logged in user->id
         // $category->user()->associate($request->user());
         $tasks->staff_id = $request->input('user_id');

@@ -51,4 +51,8 @@ class Task extends Model
     public function staff(){
         return $this->belongsTo('App\Staff');
     }
+
+    public function recordservice(){
+        return $this->belongsTo('App\RecordService');
+    }
 }
