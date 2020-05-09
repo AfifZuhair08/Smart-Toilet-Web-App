@@ -24,19 +24,24 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('/register', 'MobileAccessController@register');//Available only for testing purposes
     Route::get('/logout', 'MobileAccessController@logout');
 
-    Route::post('/userProfile', 'MobileModelController@userProfile');
+    Route::post('/home','MobileModelController@home');
 
     Route::post('/tV','MobileModelController@tasksViewById');
+    Route::post('/tS','MobileModelController@taskShowById');
+
+    Route::post('/posts','MobileModelController@posts');
 
     Route::post('/tD','MobileModelController@tissueDispenserLatest');
     Route::post('/tDList','MobileModelController@tissueDispenserList');
-    Route::post('/tS','MobileModelController@soapDispenserLatest');
-    Route::post('/tSList','MobileModelController@soapDispenserList');
+    Route::post('/sD','MobileModelController@soapDispenserLatest');
+    Route::post('/sDList','MobileModelController@soapDispenserList');
 
     Route::post('/sensorT','MobileResponseController@tissueDispenserEntry');
     Route::post('/sensorS','MobileResponseController@soapDispenserEntry');
 
     Route::post('/recordService','MobileResponseController@recordService');
+
+    Route::post('/userProfile', 'MobileModelController@userProfile');
 
 });
 
