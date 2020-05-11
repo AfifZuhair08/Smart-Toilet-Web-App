@@ -38,6 +38,7 @@ class MobileResponseController extends Controller
         return response()->json([
             'success' => true,
             'sensor' => $sensorTissue,
+            'message' => 'Sent from Smart Toilet Web Server'
         ]);
     }
 
@@ -63,6 +64,7 @@ class MobileResponseController extends Controller
         return response()->json([
             'success' => true,
             'sensor' => $sensorSoap,
+            'message' => 'Sent from Smart Toilet Web Server'
         ]);
     }
 

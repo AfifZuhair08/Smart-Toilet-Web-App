@@ -54,6 +54,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/sensorSoap/datarecord','RecordStateController@index2');
     Route::get('/stafflist','UsersController@index2');
 
+    //RECORD SERVICE ACTIVITY
+    Route::get('/recordservice','RecordServiceController@index');
+    Route::get('/recordstate','RecordStateController@index');
+
+    //USER ADMIN/MANAGER
+    Route::resource('users','UsersController');
+
 
 });
 
@@ -88,14 +95,6 @@ Route::get('get_today_Sdata','SensorSoapController@getAllDaily15Entries');
 Route::get('get_today_SSdata','SensorSoapController@getTodayEntries');
 
 
-
-//RECORD SERVICE ACTIVITY
-Route::get('/recordservice','RecordServiceController@index');
-Route::get('/recordstate','RecordStateController@index');
-
-
-//USER ADMIN/MANAGER
-Route::resource('users','UsersController');
 
 
 //POSTS

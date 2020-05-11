@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Input, Redirect;
 use Auth;
+
 use App\User;
+use App\Staff;
 use App\SensorTissue;
 use App\SensorSoap;
 use App\Task;
@@ -32,16 +34,20 @@ class MobileModelController extends Controller
 
         $staff_id = $request->input('id');
 
+        $user = Staff::find($staff_id);
+
         $userTaskCompleted = Task::where('is_complete','=','1')
         ->where('staff_id','=', $staff_id)->count();
 
         $userTaskInCompleted = Task::where('is_complete','=','0')
         ->where('staff_id','=', $staff_id)->count();
 
-        $posts = Post::orderBy('created_at','desc')->take(1)->get();
+        // $posts = Post::orderBy('created_at','desc')->take(1)->get();
+        $posts = Post::orderBy('created_at','desc')->latest()->get();
 
         return response()->json([
             'success' => true,
+            'staff_detail' => $user,
             'userTaskCompleted' => $userTaskCompleted,
             'userTaskInCompleted' => $userTaskInCompleted,
             'posts' => $posts
