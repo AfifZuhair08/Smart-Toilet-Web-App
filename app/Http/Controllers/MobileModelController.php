@@ -196,7 +196,7 @@ class MobileModelController extends Controller
         $input = $request->all();
         $input_id = $input['id'];
 
-        $tasks = Task::where('staff_id','=', $input_id)->get();
+        $tasks = Task::where('staff_id','=', $input_id)->orderBy('created_at','desc')->get();
         // $tasks = Task::orderBy('created_at','desc')->paginate(2);
 
         return response()->json([
@@ -251,7 +251,7 @@ class MobileModelController extends Controller
         $input = $request->all();
         $input['id'] = $input['id'];
         
-        $user = User::find($input)->where('role_id','=','1');
+        $user = User::find($input);
         // $success['token'] = $user->createToken('appToken')->accessToken;
         
         return response()->json([
