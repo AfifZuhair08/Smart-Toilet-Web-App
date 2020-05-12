@@ -80,6 +80,33 @@ class MobileModelController extends Controller
     }
 
     // Tissue Dispenser data
+    public function mainMonitoring(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+            'success' => false,
+            'message' => $validator->errors(),
+            ], 401);
+        }
+        
+        $input = $request->all();
+        $input['id'] = $input['id'];
+
+        $sensorT = SensorTissue::latest('entryDate')->first();
+        $sensorS = SensorSoap::latest('entryDate')->first();
+        
+        return response()->json([
+            'success' => true,
+            'sensorT' => $sensorT,
+            'sensorS' => $sensorS,
+        ]);
+    }
+
+    // Tissue Dispenser data
     public function tissueDispenserLatest(Request $request){
 
         $validator = Validator::make($request->all(), [

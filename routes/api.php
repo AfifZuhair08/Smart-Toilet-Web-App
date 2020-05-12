@@ -31,6 +31,7 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::post('/posts','MobileModelController@posts');
 
+    Route::post('/mainMonitor','MobileModelController@mainMonitoring');
     Route::post('/tD','MobileModelController@tissueDispenserLatest');
     Route::post('/tDList','MobileModelController@tissueDispenserList');
     Route::post('/sD','MobileModelController@soapDispenserLatest');
