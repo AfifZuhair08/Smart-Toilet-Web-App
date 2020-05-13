@@ -15,6 +15,7 @@ use App\SensorTissue;
 use App\SensorSoap;
 use App\Task;
 use App\Post;
+use App\RecordService;
 
 
 class MobileModelController extends Controller
@@ -260,6 +261,37 @@ class MobileModelController extends Controller
         ]);
 
     }
+
+    // Tasks by individual users
+    public function countallrecords(Request $request){
+        
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return response()->json([
+                'success' => false,
+                'message' => $validator->errors(),
+            ], 401);
+        }
+
+        $input = $request->all();
+        $input_id = $input['id'];
+
+        $records = RecordService::where('staff_id','=', $input_id)->count();
+        $sensorT = SensorTissue::count();
+        $sensorS = SensorSoap::count();
+
+        return response()->json([
+            'success' => true,
+            'service_records' => $records,
+            'sensorT' => $sensorT,
+            'sensorS' => $sensorS
+        ]);
+
+    }
+
 
     // User Profile
     public function userProfile(Request $request){

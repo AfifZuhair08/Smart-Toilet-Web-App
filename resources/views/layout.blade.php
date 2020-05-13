@@ -36,7 +36,8 @@
         {{-- <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-cogs"></i>
         </div> --}}
-        <div class="sidebar-brand-text mx-3"><h5><b>Smart Toilet</b></h5></div>
+        {{-- <div class="sidebar-brand-text mx-3"><h5><b>Smart Toilet</b></h5></div> --}}
+        <img class="text-center img-fluid" src="/storage/dash/SmartToiletClear.png" alt="">
       </a>
 
       <!-- Divider -->
@@ -267,7 +268,7 @@
               </div>
             </li>
 
-            <!-- Nav Item - Alerts -->
+            {{-- <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
@@ -314,9 +315,9 @@
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
-            </li>
+            </li> --}}
 
-            <!-- Nav Item - Messages -->
+            {{-- <!-- Nav Item - Messages -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
@@ -370,21 +371,20 @@
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
               </div>
-            </li>
+            </li> --}}
 
             
 
-            <div class="topbar-divider d-none d-sm-block"></div>
+            {{-- <div class="topbar-divider d-none d-sm-block"></div> --}}
             
             @guest
 
             @else
-            <li class="nav-item dropdown no-arrow">
+            {{-- <li class="nav-item dropdown no-arrow">
               <div class="nav-link" style="width: 70px">
-                {{-- <img class="rounded-circle" style="width:4%" src="/storage/user/{{Auth::user()->userImage}}" alt=""> --}}
                 <img class="rounded-circle float-right" style="width: 100%" src="/storage/user/{{Auth::user()->userImage}}" alt="">
               </div>
-            </li>
+            </li> --}}
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
@@ -407,10 +407,17 @@
                     @csrf
                   </form>
                 </div>
+                
               </div>
-              @endguest
             </li>
 
+            <li class="nav-item dropdown no-arrow">
+              <div class="nav-link" style="width: 70px">
+                {{-- <img class="rounded-circle" style="width:4%" src="/storage/user/{{Auth::user()->userImage}}" alt=""> --}}
+                <img class="rounded-circle float-right" style="width: 100%" src="/storage/user/{{Auth::user()->userImage}}" alt="">
+              </div>
+            </li>
+            @endguest
           </ul>
 
         </nav>

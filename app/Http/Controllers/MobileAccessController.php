@@ -19,13 +19,28 @@ class MobileAccessController extends Controller
   {
     if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
       $user = Auth::user();
-      $success['token'] = $user->createToken('appToken')->accessToken;
-      //After successfull authentication, notice how I return json parameters
-      return response()->json([
-        'success' => true,
-        'token' => $success,
-        'user' => $user
-      ]);
+
+      // allow only staff account & restrict admin account
+      if($user['role_id'] == 2){
+        $success['token'] = $user->createToken('appToken')->accessToken;
+        //After successfull authentication, notice how I return json parameters
+        return response()->json([
+          'success' => true,
+          'token' => $success,
+          'user' => $user
+        ]);
+      }elseif($user['role_id'] == 1){
+        // response the blocked access
+        return response()->json([
+          'success' => false,
+          'message' => 'Admins are not allowed to access at this time',
+        ], 401);
+      }else {
+        return response()->json([
+          'success' => false,
+          'message' => 'Invalid Email or Password',
+        ], 401);
+      }
     } else {
       return response()->json([
         'success' => false,
