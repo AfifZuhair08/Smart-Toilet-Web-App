@@ -72,7 +72,7 @@ class MobileResponseController extends Controller
 
         $validator = Validator::make($request->all(), [
             'id' => 'required',
-            'is_checked' => 'required'
+            // 'is_checked' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -84,9 +84,13 @@ class MobileResponseController extends Controller
 
         $record = new RecordService;
         $record->staff_id = $request->input('id');
-        $record->is_checked = $request->input('is_checked');
         $record->task_id = $request->input('task_id');
         $record->additional_notes = $request->input('notes');
+        // $record->is_checked = $request->input('is_checked');
+        $task_is_checked = $request->input('is_checked');
+        $record->is_checked = true;
+        // $record->is_checked = true;
+        // $checked = $request->input('is_checked');
 
         $record->save();
         $record_id = $record->id;
@@ -95,11 +99,20 @@ class MobileResponseController extends Controller
         if(!empty($record->task_id)){
             
             $task = Task::find($record->task_id);
-            $task->is_complete = true;
-            $task->record_service_id = $record_id;
 
+            if($task_is_checked == false){
+                $task->is_complete = false;
+            }else{
+                $task->is_complete = true;
+            }
+            
+            $task->record_service_id = $record_id;
             $task->save();
         }
+
+        // $record->is_checked = true;
+        // $record->save();
+        // $record_id = $record->id;
 
         return response()->json([
             'success' => true,

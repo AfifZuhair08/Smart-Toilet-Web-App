@@ -58,7 +58,7 @@ class TaskController extends Controller
     }
 
     public function status(){
-        $tasks = Task::all();
+        $tasks = Task::orderBy('created_at','desc')->paginate(10);
         return view('tasks.status')->with('tasks', $tasks);
     }
 
@@ -126,7 +126,7 @@ class TaskController extends Controller
     public function show($id)
     {
         $task = Task::find($id);
-        $records = RecordService::orderBy('created_at','desc')->where('task_id', $id )->paginate(2);
+        $records = RecordService::orderBy('created_at','asc')->where('task_id', $id )->paginate(2);
         
         return view('tasks.show')
         ->with('task', $task)

@@ -16,11 +16,11 @@
 <p></p>
 
 <div class="card">
-    <div class="card-header">
+    <div class="card-header text-white bg-dark">
         <div class="d-flex">
             {{-- post title --}}
             <div class="p-2 align-self-center">
-                <h2 class="text-dark">{{$task->task_title}}</h2>
+                <h3 class="text-white">{{$task->task_title}}</h3>
             </div>
 
             {{-- buttons --}}
@@ -57,21 +57,25 @@
     <div class="card-body">
         <table class="table table-sm table-borderless">
             <tr class="d-flex">
-                <th class="col-6">
-                    <p>Person in charge :
-                        <a href="/staffs/{{$task->staff_id}}"><b>{{ucwords($task->staff->name)}}</b></a>
-                    </p>
+                <th class="col-3">
+                    <p><b>Person in Charge</b></p>
                 </th>
                 <th class="col-3">
-                    <p>Date & time task assigned : </p>
+                    <p><b>Assigned by</b></p>
+                </th>
+                <th class="col-3">
+                    <p><b>Date & time task assigned</b></p>
                 </th>
                 <th class="col-3" style="text-align: center">
-                    <p>Status</p>
+                    <p><b>Status</b></p>
                 </th>
             </tr>
             <tr class="d-flex">
-                <th class="col-6">
-                <p>Assigned by : <a href="/users/{{$task->user_id}}"><b>{{ ucwords($task->user->name)}}</b></a></p>
+                <th class="col-3">
+                    <a href="/staffs/{{$task->staff_id}}"><b>{{ucwords($task->staff->name)}}</b></a>
+                </th>
+                <th class="col-3">
+                    <a href="/users/{{$task->user_id}}"><b>{{ ucwords($task->user->name)}}</b></a>
                 </th>
                 <th class="col-3">
                     {{$task->created_at}}
@@ -91,15 +95,14 @@
                     <p>Reminder message : {{$task->task_description}}</p>
                 </th>
             </tr>
-            
         </table>
         <div>
         </div>
     </div>
-    <hr>
-    <div class="card-header">
+    {{-- <hr> --}}
+    <div class="card-header text-white bg-secondary">
         <h5>
-            <b>Record Service</b>
+            Record Service
         </h5>
     </div>
     <div class="card-body">
@@ -108,12 +111,13 @@
             @foreach ($records as $record)
                 <tr class="d-flex">
                     <th class="col-6">
-                        <p>Record Service : {{$record->additional_notes}}</p>
+                        <p>Notes of record : {{$record->additional_notes}}</p>
                     </th>
                     <th class="col-6" style="text-align: right">
-                        <p>Date Completed : {{$record->created_at}}</p>
+                        <p>Date Checked : {{$record->created_at}}</p>
                     </th>
                 </tr>
+
                 <tr class="d-flex">
                     <th class="col-6">
 
@@ -129,6 +133,7 @@
                         </p>
                     </th>
                 </tr>
+
             @endforeach
             {{$records->links()}}
             @else
