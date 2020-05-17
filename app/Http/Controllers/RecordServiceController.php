@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\RecordService;
 
 class RecordServiceController extends Controller
 {
@@ -13,7 +14,22 @@ class RecordServiceController extends Controller
      */
     public function index()
     {
-        return view('recordservice');
+        $records = RecordService::orderBy('created_at','desc')->paginate(10);
+        return view('records/servicerecords')->with('records', $records);
+    }
+    public function index2()
+    {
+        $records = RecordService::orderBy('created_at','desc')
+        ->where('is_checked','=','1')
+        ->paginate(10);
+        return view('records/servicerecords')->with('records', $records);
+    }
+    public function index3()
+    {
+        $records = RecordService::orderBy('created_at','desc')
+        ->where('is_checked','=','0')
+        ->paginate(10);
+        return view('records/servicerecords')->with('records', $records);
     }
 
     /**

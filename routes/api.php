@@ -41,6 +41,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('/sensorS','MobileResponseController@soapDispenserEntry');
 
     Route::post('/allrecords','MobileModelController@countallrecords');
+    Route::post('/allservicerecords','MobileModelController@viewAllServiceRecords');
     Route::post('/recordService','MobileResponseController@recordService');
 
     Route::post('/userProfile', 'MobileModelController@userProfile');

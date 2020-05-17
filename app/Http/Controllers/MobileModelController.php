@@ -149,7 +149,7 @@ class MobileModelController extends Controller
         $input = $request->all();
         $input['id'] = $input['id'];
 
-        $sensor = SensorTissue::orderBy('entryDate','desc')->get();
+        $sensor = SensorTissue::orderBy('entryDate','desc')->paginate(30);
         
         return response()->json([
             'success' => true,
@@ -199,7 +199,7 @@ class MobileModelController extends Controller
         $input = $request->all();
         $input['id'] = $input['id'];
 
-        $sensor = Sensor::orderBy('entryDate', 'desc')->paginate(1);
+        $sensor = Sensor::orderBy('entryDate', 'desc')->paginate(30);
         
         return response()->json([
             'success' => true,
@@ -288,6 +288,32 @@ class MobileModelController extends Controller
             'service_records' => $records,
             'sensorT' => $sensorT,
             'sensorS' => $sensorS
+        ]);
+
+    }
+
+    // Tasks by individual users
+    public function viewAllServiceRecords(Request $request){
+        
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return response()->json([
+                'success' => false,
+                'message' => $validator->errors(),
+            ], 401);
+        }
+
+        $input = $request->all();
+        $input_id = $input['id'];
+
+        $records = RecordService::orderBy('created_at','desc')->where('staff_id','=', $input_id)->get();
+
+        return response()->json([
+            'success' => true,
+            'service_records' => $records
         ]);
 
     }

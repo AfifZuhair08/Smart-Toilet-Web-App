@@ -116,7 +116,7 @@
             <h6 class="collapse-header">Database Record:</h6>
             <a class="collapse-item" href="/sensorTissue/datarecord">Tissue Dispenser State</a>
             <a class="collapse-item" href="/sensorSoap/datarecord">Soap Dispenser State</a>
-            <a class="collapse-item" href="recordservice">Service Activity</a>
+            <a class="collapse-item" href="/records/servicerecords">Service Activity</a>
             <!--<a class="collapse-item" href="utilities-animation.html">Animations</a>
             <a class="collapse-item" href="utilities-other.html">Other</a>-->
           </div>
@@ -268,123 +268,11 @@
               </div>
             </li>
 
-            {{-- <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-              </a>
-              <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                  Alerts Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
-            </li> --}}
-
-            {{-- <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">
-                  Message Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-              </div>
-            </li> --}}
-
-            
-
             {{-- <div class="topbar-divider d-none d-sm-block"></div> --}}
             
             @guest
 
             @else
-            {{-- <li class="nav-item dropdown no-arrow">
-              <div class="nav-link" style="width: 70px">
-                <img class="rounded-circle float-right" style="width: 100%" src="/storage/user/{{Auth::user()->userImage}}" alt="">
-              </div>
-            </li> --}}
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
@@ -413,7 +301,6 @@
 
             <li class="nav-item dropdown no-arrow">
               <div class="nav-link" style="width: 70px">
-                {{-- <img class="rounded-circle" style="width:4%" src="/storage/user/{{Auth::user()->userImage}}" alt=""> --}}
                 <img class="rounded-circle float-right" style="width: 100%" src="/storage/user/{{Auth::user()->userImage}}" alt="">
               </div>
             </li>
@@ -485,11 +372,11 @@
   <script src="/js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="/vendor/chart.js/Chart.min.js"></script>
+  {{-- <script src="/vendor/chart.js/Chart.min.js"></script> --}}
 
   <!-- Page level custom scripts -->
-  <script src="/js/demo/chart-area-demo.js"></script>
-  <script src="/js/demo/chart-pie-demo.js"></script>
+  {{-- <script src="/js/demo/chart-area-demo.js"></script> --}}
+  {{-- <script src="/js/demo/chart-pie-demo.js"></script> --}}
 
   {{-- <script src="{{url( '/vendor/jquery/jquery.min.js' )}}"></script> --}}
 
@@ -502,11 +389,13 @@
 
   {{-- <script src="/vendor/chart.js/newChart.js"></script> --}}
 
-  <script type="text/javasript">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+  {{-- <script type="text/javasript">
     $(document).on('click','ul li', function(){
       $(this).addClass('active').siblings().removeClass('active')
     })
-  </script>
+  </script> --}}
 
   <script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
   <script>

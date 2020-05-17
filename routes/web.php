@@ -46,7 +46,10 @@ Route::middleware(['auth', 'manager'])->group(function () {
     Route::get('/stafflist','UsersController@index2');
 
     //RECORD SERVICE ACTIVITY
-    Route::get('/recordservice','RecordServiceController@index');
+    Route::get('/records/servicerecords','RecordServiceController@index');
+    Route::get('/records/servicerecords2','RecordServiceController@index2');
+    Route::get('/records/servicerecords3','RecordServiceController@index3');
+
     Route::get('/recordstate','RecordStateController@index');
 
     //USER ADMIN/MANAGER
