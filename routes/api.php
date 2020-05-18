@@ -46,18 +46,7 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::post('/userProfile', 'MobileModelController@userProfile');
 
-});
+    Route::get('chartTissue', 'ChartsApiController@graphTissue')->name('api.chartTissue');
+    Route::get('chartSoap', 'ChartsApiController@graphSoap')->name('api.chartSoap');
 
-// // SENSORTISSUE
-// // list 15
-// Route::get('sensortissues','SensorTissueController@index');
-// // list single one
-// Route::get('sensortissue/{id}','SensorTissueController@show');
-// // show all latest
-// Route::get('get_daily15_Tdata','SensorTissueController@getAllDaily15Entries');
-// // create new entry
-// Route::post('sensortissue','SensorTissueController@store');
-// // update
-// Route::put('sensortissues','SensorTissueController@store');
-// // delete
-// Route::delete('sensortissues','SensorTissueController@destroy');
+});

@@ -15,7 +15,7 @@
     <!-- Area Chart Example-->
     <div class="card mb-3">
         <div class="card-header">
-            <i class="fa fa-area-chart"></i> Tissue Dispenser Entries Monthly </div>
+            <i class="fa fa-area-chart"></i> Soap Dispenser Entries Monthly </div>
         <div class="card-body">
             <canvas id="SoapChartMonthly" width="100%" height="30"></canvas>
         </div>

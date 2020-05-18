@@ -37,7 +37,13 @@
                 <th class="col-1">{{$record->id}}</th>
                 <th class="col-5">{{$record->additional_notes}}</th>
                 <th class="col-2">{{ ucwords($record->staff->name)}}</th>
-                <th class="col-1 text-center"><a href="/tasks/{{$record->task_id}}"> View </a></th>
+                <th class="col-1 text-center">
+                    @if(!empty($record->task_id))
+                        <a href="/tasks/{{$record->task_id}}"> View Task</a>
+                    @else
+                        No
+                    @endif
+                </th>
                 <th class="col-1 text-center">
                     @if ($record->is_checked)
                         <a href="#" class="btn btn-success"> Checked </a>

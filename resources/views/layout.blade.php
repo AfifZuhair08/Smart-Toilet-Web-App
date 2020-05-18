@@ -55,11 +55,7 @@
 
       <!-- Nav Item - Posts -->
       <li class="nav-item">
-        {{-- <a class="nav-link" href="/posts">
-          <i class="fas fa-fw fa-blog"></i>
-          <span>Posts</span></a> --}}
-          <h5>
-          <a class="nav-link collapsed" href="/posts" data-toggle="collapse" data-target="#collapsePost" aria-expanded="true" aria-controls="collapseTwo">
+          <h5><a class="nav-link collapsed" href="/posts" data-toggle="collapse" data-target="#collapsePost" aria-expanded="true" aria-controls="collapseTwo">
             <!--<i class="fas fa-fw fa-cog"></i>-->
             <i class="fas fa-fw fa-chart-area"></i>
             {{-- <span>Posts</span> --}} Posts
@@ -92,14 +88,12 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Tissue Dispenser:</h6>
-            <a class="collapse-item" href="/monitorTissue">Tissue</a>
+            <a class="collapse-item" href="/rtmTissueToday" target="_blank">Real-Time Data</a>
             <a class="collapse-item" href="/rtmTissue">Monthly Entries</a>
-            <a class="collapse-item" href="/rtmTissueToday">Real-Time Data</a>
             <div class="dropdown-divider"></div>
             <h6 class="collapse-header">Soap Dispenser:</h6>
-            <a class="collapse-item" href="/monitorSoap">Soap</a>
+            <a class="collapse-item" href="/rtmSoapToday" target="_blank">Real-Time Data</a>
             <a class="collapse-item" href="/rtmSoap">Monthly Entries</a>
-            <a class="collapse-item" href="/rtmSoapToday">Real-Time Data</a>
           </div>
         </div>
       </li>
@@ -113,10 +107,12 @@
         </a></h5>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Service Record:</h6>
+            <a class="collapse-item" href="/records/servicerecords">Service Activity Records</a>
+            <div class="dropdown-divider"></div>
             <h6 class="collapse-header">Database Record:</h6>
             <a class="collapse-item" href="/sensorTissue/datarecord">Tissue Dispenser State</a>
             <a class="collapse-item" href="/sensorSoap/datarecord">Soap Dispenser State</a>
-            <a class="collapse-item" href="/records/servicerecords">Service Activity</a>
             <!--<a class="collapse-item" href="utilities-animation.html">Animations</a>
             <a class="collapse-item" href="utilities-other.html">Other</a>-->
           </div>
@@ -131,7 +127,6 @@
         <h6>Manage</h6>
       </div>
 
-
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <h5>
@@ -144,9 +139,7 @@
             <h6 class="collapse-header">Manage</h6>
             <a class="collapse-item" href="/tasks/create">Create task</a>
             <a class="collapse-item" href="/tasks">All Task</a>
-            <a class="collapse-item" href="/tasks/incomplete">In complete</a>
-            <a class="collapse-item" href="/tasks/completed">Completed</a>
-            <a class="collapse-item" href="/tasks/status">Status</a>
+            <a class="collapse-item" href="/tasks/status">All Tasks Status</a>
           </div>
         </div>
       </li>
@@ -156,7 +149,7 @@
         <h5>
         <a class="nav-link collapsed" href="/manage" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true" aria-controls="collapsePages2">
           <i class="fas fa-fw fa-users"></i>
-          {{-- <span>Manage Staff</span> --}}Staffs
+          Staffs
         </a></h5>
         <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -164,7 +157,6 @@
             <a class="collapse-item" href="/staffs">Staff Accounts</a>
             {{-- <a class="collapse-item" href="/stafflist">Staff List</a> --}}
             <a class="collapse-item" href="/staffs/create">Register</a>
-            {{-- <a class="collapse-item" href="/staffs">Status</a> --}}
           </div>
         </div>
       </li>
@@ -174,29 +166,16 @@
         <h5>
         <a class="nav-link collapsed" href="/manage" data-toggle="collapse" data-target="#collapsePages3" aria-expanded="true" aria-controls="collapsePages3">
           <i class="fas fa-fw fa-users"></i>
-          {{-- <span>Manage Staff</span> --}}Managers
+          Managers
         </a></h5>
         <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Manage</h6>
-            <a class="collapse-item" href="/users">Manager List</a>
+            <a class="collapse-item" href="/users">Manager Accounts</a>
+            <a class="collapse-item" href="/users/create">Register</a>
           </div>
         </div>
       </li>
-
-      <!-- Nav Item - Charts
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>-->
-
-      <!-- Nav Item - Tables -->
-      {{-- <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Calendar & Reminder</span></a>
-      </li> --}}
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -380,22 +359,16 @@
 
   {{-- <script src="{{url( '/vendor/jquery/jquery.min.js' )}}"></script> --}}
 
-  {{-- <script src="{{url( '/vendor/chart.js/Chart.min.js' )}}"></script> --}}
+  <script src="{{url( '/vendor/chart.js/Chart.min.js' )}}"></script>
 
   <script src="{{url( '/vendor/chart.js/ChartTissue.js' )}}"></script>
   <script src="{{url( '/vendor/chart.js/ChartSoap.js' )}}"></script>
-  <script src="{{url( '/vendor/chart.js/TissueChartToday.js' )}}"></script>
-  <script src="{{url( '/vendor/chart.js/SoapChartToday.js' )}}"></script>
+  {{-- <script src="{{url( '/vendor/chart.js/TissueChartToday.js' )}}"></script> --}}
+  {{-- <script src="{{url( '/vendor/chart.js/SoapChartToday.js' )}}"></script> --}}
 
   {{-- <script src="/vendor/chart.js/newChart.js"></script> --}}
 
   <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
-
-  {{-- <script type="text/javasript">
-    $(document).on('click','ul li', function(){
-      $(this).addClass('active').siblings().removeClass('active')
-    })
-  </script> --}}
 
   <script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
   <script>

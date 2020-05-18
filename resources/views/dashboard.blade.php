@@ -151,8 +151,8 @@
 </script>
 <script>
   $(document).ready(function() {
-      // auto refresh page after 1 second
-      setInterval('refreshPage()', 30000);
+      // auto refresh page after 1 minutes
+      setInterval('refreshPage()', 60000);
   });
 
   function refreshPage() { 

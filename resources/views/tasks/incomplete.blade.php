@@ -63,7 +63,7 @@
     @endforeach
     {{$tasks->links()}}
 @else
-    <p>No tasks found !</p>
+    <p>Great, no incomplete tasks !</p>
 @endif
 
 </div>

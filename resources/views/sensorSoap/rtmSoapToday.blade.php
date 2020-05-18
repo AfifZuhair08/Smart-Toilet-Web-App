@@ -1,43 +1,53 @@
-@extends('layout')
-@section('main-content')
+{{-- @extends('layout')
+@section('main-content') --}}
+
+<head>
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <title>Smart Toilet > Real-Time Soap Dispenser Monitoring</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">
+            <img class="text-center img-fluid" src="/storage/dash/SmartToiletClear.png" width="200" height="200" alt="">
+        </a>
+    </nav>
     
-<!-- Page Heading -->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Record > Real-Time Tissue Dispenser State</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-</div>
-<hr>
-<p>
-    This is the record of data send from the tissue dispenser
-</p>
-
-<div class="container-fluid">
-    <!-- Area Chart Example-->
-    <div class="card" style="width: 100rem;">
-        <div class="card-header">
-            <i class="fa fa-area-chart"></i> Tissue Dispenser State </div>
-        <div class="card-body">
-            <canvas id="ChartS_Today" width="100%" height="35"></canvas>
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <p></p>
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">Record > Real-Time Soap Dispenser State</h1>
+            </div>
+            <hr>
+            <p>This is the record of data send from the soap dispenser</p>
+            <div class="container-fluid">
+                <!-- Area Chart Example-->
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-area-chart"></i> Soap Dispenser State </div>
+                    <div class="card-body">
+                        <canvas id="ChartS_Today" width="100%" height="30"></canvas>
+                    </div>
+                    <div class="card-footer small text-muted">Updated at @php  echo date('j F Y , h:i:s a' , time() ) @endphp</div>
+                </div>
+            </div>
         </div>
-        <div class="card-footer small text-muted">Updated at @php  echo date('j F Y , h:i:s a' , time() ) @endphp</div>
     </div>
-</div>
 
-
-@endsection
-
-{{-- @section( 'scripts' ) --}}
-{{-- <script src="/vendor/jquery/jquery.min.js"></script>
-
-<script src="/vendor/chart.js/Chart.min.js"></script>
-
-<script src="/vendor/chart.js/newChart.js"></script> --}}
-
-    {{-- <script src="{{url( '/vendor/jquery/jquery.min.js' )}}"></script>
-
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js">
+    </script>
     <script src="{{url( '/vendor/chart.js/Chart.min.js' )}}"></script>
+    <script src="{{url( '/vendor/chart.js/SoapChartToday.js' )}}"></script>
+    <script>
+        $(document).ready(function() {
+            // auto refresh page after 1 second
+            setInterval('refreshPage()', 5000);
+        });
 
-    <script src="{{url( '/vendor/chart.js/newChart.js' )}}"></script> --}}
-{{-- @endsection --}}
-
-{{-- <script src="vendor/chart.js/Chart.min.js"></script> --}}
+        function refreshPage() { 
+            location.reload(); 
+        }
+    </script>
+</body>

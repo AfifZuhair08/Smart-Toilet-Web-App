@@ -83,14 +83,6 @@ class SensorSoapController extends Controller
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public function getTodayEntries(){
-        
-        // $todayentry = SensorSoap::whereDate('entryDate', Carbon::now($timezone))->get()->take(30)->sortBy('entryDate');
-        // $todayentry = SensorTissue::whereDate('entryDate', Carbon::today())->get()->take(30)->pluck('entryDate');
-        // $timezone = config('app.timezone');
-        // $todayentry = array();
-        // $todayentry = SensorSoap::whereDate('entryDate',Carbon::now($timezone))->get(['entryDate','sensorValue'])->take(30)->sortBy('entryDate');
-        // $todayentry = json_decode($todayentry);
-        // return $todayentry;
 
         $todayentry = array();
         $todayentry = SensorSoap::whereDate('entryDate', Carbon::today())->get()->take(30)->pluck('entryDate');
@@ -120,70 +112,4 @@ class SensorSoapController extends Controller
         return response()->json(compact('labels','data'));
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
