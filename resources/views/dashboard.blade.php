@@ -79,7 +79,7 @@
               <i class="fas fa-toilet-paper fa-2x text-gray-500"></i>
             </div>
           </div>
-          <a href="/rtmTissueToday" class="stretched-link"></a>
+          <a href="/rtmTissueToday" class="stretched-link" target="_blank"></a>
         </div>
       </div>
     </div>
@@ -97,7 +97,7 @@
               <i class="fas fa-tint fa-2x text-gray-500"></i>
             </div>
           </div>
-          <a href="/rtmSoapToday" class="stretched-link"></a>
+          <a href="/rtmSoapToday" class="stretched-link" target="_blank"></a>
         </div>
       </div>
     </div>

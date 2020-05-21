@@ -103,13 +103,13 @@ class SensorTissueController extends Controller
 
     public function getAllDaily15Entries(){
         $todayentryDates = array();
-        $todayentryDates = SensorTissue::orderBy('entryDate','asc')->take(15)->pluck('entryDate');
+        $todayentryDates = SensorTissue::latest()->take(15)->get()->sortBy('entryDate')->pluck('entryDate');
         // $todayentryDates = SensorTissue::orderBy('entryDate','asc')->format("Y-m-d H:i:s")->take(15)->pluck('entryDate');
         // $todayentryDates = $todayentryDates->format("Y-m-d H:i:s");
         $todayentryDates = json_decode($todayentryDates);
 
         $todayentryValues = array();
-        $todayentryValues = SensorTissue::orderBy('entryDate','asc')->take(15)->pluck('sensorValue');
+        $todayentryValues = SensorTissue::latest()->take(15)->get()->sortBy('entryDate')->pluck('sensorValue');
         $todayentryValues = json_decode($todayentryValues);
 
         $labels = $todayentryDates;

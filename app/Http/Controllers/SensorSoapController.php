@@ -100,11 +100,11 @@ class SensorSoapController extends Controller
 
     public function getAllDaily15Entries(){
         $todayentryDates = array();
-        $todayentryDates = SensorSoap::orderBy('entryDate','asc')->take(30)->pluck('entryDate');
+        $todayentryDates = SensorSoap::latest()->take(15)->get()->sortBy('entryDate')->pluck('entryDate');
         $todayentryDates = json_decode($todayentryDates);
 
         $todayentryValues = array();
-        $todayentryValues = SensorSoap::orderBy('entryDate','asc')->take(30)->pluck('sensorValue');
+        $todayentryValues = SensorSoap::latest()->take(15)->get()->sortBy('entryDate')->pluck('sensorValue');
         $todayentryValues = json_decode($todayentryValues);
 
         $labels = $todayentryDates;
