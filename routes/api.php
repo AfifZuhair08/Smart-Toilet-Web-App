@@ -33,7 +33,7 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::post('/mainMonitor','MobileModelController@mainMonitoring');
     Route::post('/tD','MobileModelController@tissueDispenserLatest');
-    Route::post('/tDList','MobileModelController@tissueDispenserList');
+    Route::post('/tDList','MobileModelController@tissueDispenserLists');
     Route::post('/sD','MobileModelController@soapDispenserLatest');
     Route::post('/sDList','MobileModelController@soapDispenserList');
 

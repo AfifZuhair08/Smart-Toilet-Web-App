@@ -28,13 +28,11 @@ class SensorSoapController extends Controller
         return view('monitorSoap');
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
     function getAllMonth(){
         
         $month_array = array();
         $SensorTissues = SensorSoap::orderBy('entryDate','asc')->pluck('entryDate');
         $SensorTissues = json_decode($SensorTissues);
-        
         
         if( !empty ($SensorTissues)){
             foreach( $SensorTissues as $unformatted_date){
@@ -55,7 +53,6 @@ class SensorSoapController extends Controller
 
     function getMonthlyEntry(){
         
-        // $monthlyEntryData_array = array();
         $monthlyEntry_array = array();
         $monthName_array = array();
 
@@ -67,8 +64,7 @@ class SensorSoapController extends Controller
                 array_push( $monthName_array, $month_name);
             }
         }
-        // $month_array = $this->getAllMonth();
-        // return $monthlyEntry_array;
+
         $max_num = max($monthlyEntry_array);
         $max = round(($max_num + 10/2 ) / 10)*10;
         
@@ -77,10 +73,8 @@ class SensorSoapController extends Controller
             'monthly_entries' => $monthlyEntry_array,
             'max' => $max,
         );
-
         return $monthlyEntryData_array;
     }
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public function getTodayEntries(){
 
@@ -89,7 +83,6 @@ class SensorSoapController extends Controller
         $todayentry = json_decode($todayentry);
 
         $todayentryValues = array();
-        // $todayentryValues = SensorTissue::orderBy('entryDate','asc')->take(30)->pluck('sensorValue');
         $todayentryValues = SensorSoap::whereDate('entryDate', Carbon::today())->get()->take(30)->pluck('sensorValue');
         $todayentryValues = json_decode($todayentryValues);
 
