@@ -150,9 +150,11 @@ class MobileModelController extends Controller
         $input['id'] = $input['id'];
 
         $sensor = SensorTissue::orderBy('entryDate','desc')->paginate(30);
+        $sensorcount = SensorTissue::count();
         
         return response()->json([
             'success' => true,
+            'sensorcount' => $sensorcount,
             'sensor' => $sensor,
         ]);
     }
@@ -174,7 +176,7 @@ class MobileModelController extends Controller
         $input = $request->all();
         $input['id'] = $input['id'];
 
-        $sensor = Sensor::orderBy('entryDate', 'desc')->paginate(1);
+        $sensor = SensorSoap::orderBy('entryDate', 'desc')->paginate(1);
         
         return response()->json([
             'success' => true,
@@ -199,10 +201,12 @@ class MobileModelController extends Controller
         $input = $request->all();
         $input['id'] = $input['id'];
 
-        $sensor = Sensor::orderBy('entryDate', 'desc')->paginate(30);
+        $sensor = SensorSoap::orderBy('entryDate', 'desc')->paginate(30);
+        $sensorcount = SensorSoap::count();
         
         return response()->json([
             'success' => true,
+            'sensorcount' => $sensorcount,
             'sensor' => $sensor,
         ]);
     }

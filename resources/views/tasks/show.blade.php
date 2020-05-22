@@ -5,7 +5,7 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">
         {{-- <a href="/tasks"> --}}
-            Tasks
+            Tasks Details
         {{-- </a> --}}
     </h1>
 </div>
@@ -20,7 +20,7 @@
         <div class="d-flex">
             {{-- post title --}}
             <div class="p-2 align-self-center">
-                <h3 class="text-white">{{$task->task_title}}</h3>
+                <h3 class="text-white">Task: {{$task->task_title}}</h3>
             </div>
 
             {{-- buttons --}}
@@ -46,7 +46,7 @@
                                 {{Form::submit('Yes, Im sure ',['class' => 'dropdown-item'])}}
                                 {!!Form::close()!!}
                                 </a>
-                                <a class="dropdown-item" href="#">Report this task</a>
+                                {{-- <a class="dropdown-item" href="#">Report this task</a> --}}
                             </div>
                         @endif
                     @endif
