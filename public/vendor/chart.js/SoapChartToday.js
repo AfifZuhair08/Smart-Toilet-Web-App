@@ -11,7 +11,7 @@
 		},
 
 		ajaxGetMonthlyEntry: function () {
-			var urlPath =  'http://' + window.location.hostname + ':8000/get_today_Sdata';
+			var urlPath =  'http://' + window.location.hostname + '/get_today_Sdata';
 			var request = $.ajax( {
 				method: 'GET',
 				url: urlPath
@@ -76,8 +76,8 @@
 							},
 							ticks: {
 								min: 0,
-								max: 20, // The response got from the ajax request containing max limit for y axis
-								maxTicksLimit: 5
+								max: 10, // The response got from the ajax request containing max limit for y axis
+								maxTicksLimit: 8
 							},
 							gridLines: {
 								color: "rgba(0, 0, 0, .125)",

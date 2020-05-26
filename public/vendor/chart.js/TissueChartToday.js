@@ -11,7 +11,7 @@
 		},
 
 		ajaxGetMonthlyEntry: function () {
-			var urlPath =  'http://' + window.location.hostname + ':8000/get_daily15_Tdata';
+			var urlPath =  'http://' + window.location.hostname + '/get_daily15_Tdata';
 			var request = $.ajax( {
 				method: 'GET',
 				url: urlPath
@@ -76,7 +76,7 @@
 							},
 							ticks: {
 								min: 0,
-								max: 20, // The response got from the ajax request containing max limit for y axis
+								max: 17, // The response got from the ajax request containing max limit for y axis
 								maxTicksLimit: 5
 							},
 							gridLines: {

@@ -13,6 +13,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>Smart Toilet</title>
+  <link rel="icon" href="{!! asset('storage/dash/Smart Toilet.png') !!}"/>
 
   <!-- Custom fonts for this template-->
   <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -32,7 +33,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
         {{-- <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-cogs"></i>
         </div> --}}
@@ -46,7 +47,7 @@
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
         <h5>
-          <a class="nav-link" href="/dashboard">
+          <a class="nav-link" href="/">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             Dashboard
           </a>

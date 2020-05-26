@@ -4,6 +4,7 @@
 <head>
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
     <title>Smart Toilet > Real-Time Soap Dispenser Monitoring</title>
+    <link rel="icon" href="{!! asset('storage/dash/Smart Toilet.png') !!}"/>
 </head>
 
 <body>
@@ -43,7 +44,7 @@
     <script>
         $(document).ready(function() {
             // auto refresh page after 1 second
-            setInterval('refreshPage()', 5000);
+            setInterval('refreshPage()', 3000);
         });
 
         function refreshPage() { 

@@ -11,7 +11,7 @@
 		},
 
 		ajaxGetMonthlyEntry: function () {
-			var urlPath =  'http://' + window.location.hostname + ':8000/get_chart_monthly_data';
+			var urlPath =  'http://' + window.location.hostname + '/get_chart_monthly_data';
 			var request = $.ajax( {
 				method: 'GET',
 				url: urlPath
@@ -43,7 +43,7 @@
 						pointBorderColor: "rgba(255,255,255,0.8)",
 						pointHoverRadius: 5,
 						pointHoverBackgroundColor: "rgba(2,117,216,1)",
-						pointHitRadius: 20,
+						pointHitRadius: 17,
 						pointBorderWidth: 2,
 						data: response.monthly_entries, // The response got from the ajax request containing data for the entries in the corresponding months
 					}],

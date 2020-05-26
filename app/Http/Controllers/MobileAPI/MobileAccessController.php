@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\MobileAPI;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash; 
@@ -8,9 +9,9 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Input, Redirect;
 use Auth;
+
 use App\User;
 use App\SensorTissue;
-
 
 class MobileAccessController extends Controller
 {

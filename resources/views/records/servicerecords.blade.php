@@ -5,7 +5,7 @@
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Service Activity</h1>
+    <h1 class="h3 mb-0 text-gray-800">Service Activity Records</h1>
     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 </div>
 
@@ -26,7 +26,7 @@
                 <th class="col-1">ID</th>
                 <th class="col-5">Notes</th>
                 <th class="col-2">Staff</th>
-                <th class="col-1">Task</th>
+                <th class="col-1">Task Associated</th>
                 <th class="col-1">Status</th>
                 <th class="col-2">Date Submitted</th>
             </tr>

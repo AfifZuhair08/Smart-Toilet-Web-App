@@ -35,7 +35,11 @@ class DashboardController extends Controller
 
         $tasks = Task::count();
         $tasks_complete = Task::where('is_complete','=','1')->count();
-        $tasks_complete = $tasks_complete / $tasks *100;
+        if($tasks == 0){
+            $tasks_complete = 0;
+        }else{
+            $tasks_complete = $tasks_complete / $tasks *100;
+        }
 
         $sTissue = SensorTissue::count();
         $sSoap = SensorSoap::count();

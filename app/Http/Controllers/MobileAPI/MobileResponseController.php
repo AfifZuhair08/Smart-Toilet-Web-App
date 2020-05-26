@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\MobileAPI;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash; 
@@ -8,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Input, Redirect;
 use Auth;
+
 use App\User;
 use App\SensorTissue;
 use App\SensorSoap;
@@ -86,11 +88,9 @@ class MobileResponseController extends Controller
         $record->staff_id = $request->input('id');
         $record->task_id = $request->input('task_id');
         $record->additional_notes = $request->input('notes');
-        // $record->is_checked = $request->input('is_checked');
-        $task_is_checked = $request->input('is_checked');
+
         $record->is_checked = true;
-        // $record->is_checked = true;
-        // $checked = $request->input('is_checked');
+        $task_is_checked = $request->input('is_checked');
 
         $record->save();
         $record_id = $record->id;
@@ -109,10 +109,6 @@ class MobileResponseController extends Controller
             $task->record_service_id = $record_id;
             $task->save();
         }
-
-        // $record->is_checked = true;
-        // $record->save();
-        // $record_id = $record->id;
 
         return response()->json([
             'success' => true,
