@@ -9,6 +9,7 @@
 
     {{-- <title>{{ config('app.name', 'Smart Toilet') }}</title> --}}
     <title>Smart Toilet</title>
+    <link rel="icon" href="{!! asset('storage/dash/Smart Toilet.png') !!}"/>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
