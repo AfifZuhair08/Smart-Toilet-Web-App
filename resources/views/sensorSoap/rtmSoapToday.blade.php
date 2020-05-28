@@ -44,7 +44,7 @@
     <script>
         $(document).ready(function() {
             // auto refresh page after 1 second
-            setInterval('refreshPage()', 3000);
+            setInterval('refreshPage()', 5000);
         });
 
         function refreshPage() { 

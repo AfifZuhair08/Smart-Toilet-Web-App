@@ -20,7 +20,7 @@
                     <th class="col-3">Date</th>
                     <th class="col-3">Time</th>
                     <th class="col-sm-3">ID</th>
-                    <th class="col-sm-3">Value</th>
+                    <th class="col-sm-3">Value (mm)</th>
                 </tr>
             </thead>
             @foreach ($sensorStateSs as $sensorStateS)

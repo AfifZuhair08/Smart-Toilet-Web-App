@@ -23,21 +23,7 @@
     </div>
 </div>
 
+{{-- <script src="{{url( '/vendor/chart.js/Chart.min.js' )}}"></script>
+<script src="{{url( '/vendor/chart.js/ChartSoap.js' )}}"></script> --}}
 
 @endsection
-
-{{-- @section( 'scripts' ) --}}
-{{-- <script src="/vendor/jquery/jquery.min.js"></script>
-
-<script src="/vendor/chart.js/Chart.min.js"></script>
-
-<script src="/vendor/chart.js/newChart.js"></script> --}}
-
-    {{-- <script src="{{url( '/vendor/jquery/jquery.min.js' )}}"></script>
-
-    <script src="{{url( '/vendor/chart.js/Chart.min.js' )}}"></script>
-
-    <script src="{{url( '/vendor/chart.js/newChart.js' )}}"></script> --}}
-{{-- @endsection --}}
-
-{{-- <script src="vendor/chart.js/Chart.min.js"></script> --}}

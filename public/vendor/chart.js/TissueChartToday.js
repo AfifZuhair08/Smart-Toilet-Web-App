@@ -34,7 +34,7 @@
 				data: {
 					labels: response.labels, // The response got from the ajax request containing all month names in the database
 					datasets: [{
-						label: "Sensor State",
+						label: "Tissue Dispenser State",
 						lineTension: 0.3,
 						backgroundColor: "rgba(2,117,216,0.2)",
 						borderColor: "rgba(2,117,216,1)",
@@ -53,7 +53,7 @@
 						xAxes: [{
 							scaleLabel: {
 								display: true,
-								labelString: 'Date/Time'
+								labelString: 'tsID'
 							},
 							time: {
 								unit: 'time',
@@ -66,13 +66,13 @@
 								display: false
 							},
 							ticks: {
-								maxTicksLimit: 7
+								maxTicksLimit: 10
 							}
 						}],
 						yAxes: [{
 							scaleLabel: {
 								display: true,
-								labelString: 'State Value'
+								labelString: 'State Value (cm)'
 							},
 							ticks: {
 								min: 0,

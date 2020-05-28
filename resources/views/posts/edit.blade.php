@@ -44,6 +44,12 @@
     {!! Form::close() !!}
 </div>
 
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+  <script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
+  <script>
+    CKEDITOR.replace( 'summary-ckeditor' );
+</script>
 
 
 @endsection

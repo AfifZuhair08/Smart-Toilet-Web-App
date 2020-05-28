@@ -264,26 +264,31 @@
                 </button>
                 
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="/users/{{Auth::user()->id}}">Profile</a>
+                  <a class="dropdown-item" href="/users/{{Auth::user()->id}}">
+                    <i class="fas fa-fw fa-user"></i>
+                    <b>My Profile</b>
+                  </a>
                   <div class="dropdown-divider"></div>
+                  
                   <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
+                    <i class="fas fa-fw fa-sign-out-alt"></i>
+                    <b>{{ __('Logout') }}</b>
                   </a>
+                  
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                   </form>
                 </div>
                 
+                <div class="nav-link dropdown-toggle" style="width: 70px" data-toggle="dropdown" aria-haspopup="true">
+                  <img class="rounded-circle float-right" style="width: 100%" src="/storage/user/{{Auth::user()->userImage}}" alt="">
+                </div>
+                
               </div>
             </li>
 
-            <li class="nav-item dropdown no-arrow">
-              <div class="nav-link" style="width: 70px">
-                <img class="rounded-circle float-right" style="width: 100%" src="/storage/user/{{Auth::user()->userImage}}" alt="">
-              </div>
-            </li>
             @endguest
           </ul>
 
@@ -351,31 +356,11 @@
   <!-- Custom scripts for all pages-->
   <script src="/js/sb-admin-2.min.js"></script>
 
-  <!-- Page level plugins -->
-  {{-- <script src="/vendor/chart.js/Chart.min.js"></script> --}}
-
-  <!-- Page level custom scripts -->
-  {{-- <script src="/js/demo/chart-area-demo.js"></script> --}}
-  {{-- <script src="/js/demo/chart-pie-demo.js"></script> --}}
-
-  {{-- <script src="{{url( '/vendor/jquery/jquery.min.js' )}}"></script> --}}
-
   <script src="{{url( '/vendor/chart.js/Chart.min.js' )}}"></script>
-
   <script src="{{url( '/vendor/chart.js/ChartTissue.js' )}}"></script>
   <script src="{{url( '/vendor/chart.js/ChartSoap.js' )}}"></script>
-  {{-- <script src="{{url( '/vendor/chart.js/TissueChartToday.js' )}}"></script> --}}
-  {{-- <script src="{{url( '/vendor/chart.js/SoapChartToday.js' )}}"></script> --}}
-
-  {{-- <script src="/vendor/chart.js/newChart.js"></script> --}}
-
-  <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
-
-  <script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
-  <script>
-    CKEDITOR.replace( 'summary-ckeditor' );
-  </script>
   
+
 </body>
 
 </html>
