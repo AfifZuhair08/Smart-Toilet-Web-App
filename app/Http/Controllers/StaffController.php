@@ -140,7 +140,7 @@ class StaffController extends Controller
             'phone' => 'required',
             'username' => 'required',
             'email' => 'required',
-            'userImage' => 'image|nullable|max:3999'
+            'userImage' => 'image|nullable|max:1999'
         ]);
 
         //Handle file upload
@@ -158,23 +158,18 @@ class StaffController extends Controller
         }
 
         // create post
-        $staff = Staff::find($id);
-        $staff->name = $request->input('name');
-        
-        // $post->userImage = $filenametostore;
-        // if($staff->userImage==="noimage.jpg"){
-        //     return redirect('/staffs')->with('success', 'Post Updated');
-        // }
+        $user = User::find($id);
+        $user->name = $request->input('name');
 
         if($request->hasFile('userImage')){
             // Storage::delete('public/userImage/' . $staff->userImage);
-            $staff->userImage = $filenametostore;
+            $user->userImage = $filenametostore;
         }
 
-        $staff->username = $request->input('username');
-        $staff->phone = $request->input('phone');
-        $staff->email = $request->input('email');
-        $staff->save();
+        $user->username = $request->input('username');
+        $user->phone = $request->input('phone');
+        $user->email = $request->input('email');
+        $user->save();
 
         return redirect('/staffs')->with('success', 'Staff details has been updated');
     }

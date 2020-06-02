@@ -29,11 +29,10 @@
                     {{-- buttons --}}
                     @if(!Auth::guest())
                         @if(Auth::user()->id == $task->user_id)
-                            {{-- button edit --}}
-                            {{-- <div class="p-2"> --}}
-                                <a href="/tasks/{{$task->id}}/edit" class="btn btn-success"> Edit </a>
-                            {{-- </div> --}}
-                            {{-- button delete --}}
+                            @if($task->is_complete == 1)
+                                <button class="btn btn-primary">Task Completed</button>
+                            @else
+                            <a href="/tasks/{{$task->id}}/edit" class="btn btn-success"> Edit </a>
                             <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Cancel task assignment
                             </button>
@@ -48,6 +47,7 @@
                                 </a>
                                 {{-- <a class="dropdown-item" href="#">Report this task</a> --}}
                             </div>
+                            @endif
                         @endif
                     @endif
                 </div>

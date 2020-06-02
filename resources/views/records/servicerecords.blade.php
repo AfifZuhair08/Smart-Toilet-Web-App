@@ -12,8 +12,8 @@
 <hr>
 <div class="container-fluid">
     <a href="/records/servicerecords" class="d-block d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-task fa-sm text-white-50"></i>    All Service</a>
-    <a href="/records/servicerecords2" class="d-block d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-task fa-sm text-white-50"></i>    Checked</a>
-    <a href="/records/servicerecords3" class="d-block d-sm-inline-block btn btn-sm btn-warning shadow-sm"><i class="fas fa-task fa-sm text-white-50"></i>    Not Checked</a>
+    <a href="/records/servicerecords2" class="d-block d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-task fa-sm text-white-50"></i>    Complete</a>
+    <a href="/records/servicerecords3" class="d-block d-sm-inline-block btn btn-sm btn-warning shadow-sm"><i class="fas fa-task fa-sm text-white-50"></i>    Not Complete</a>
 <p></p>
 </div>
 
@@ -28,7 +28,7 @@
                 <th class="col-2">Staff</th>
                 <th class="col-1">Task Associated</th>
                 <th class="col-1">Status</th>
-                <th class="col-2">Date Submitted</th>
+                <th class="col-2">Date & Time Submitted</th>
             </tr>
         </thead>
         @foreach ($records as $record)
@@ -39,14 +39,14 @@
                 <th class="col-2">{{ ucwords($record->staff->name)}}</th>
                 <th class="col-1 text-center">
                     @if(!empty($record->task_id))
-                        <a href="/tasks/{{$record->task_id}}"> View Task</a>
+                        <a href="/tasks/{{$record->task_id}}" class="btn btn-success"> View Task</a>
                     @else
                         No
                     @endif
                 </th>
                 <th class="col-1 text-center">
                     @if ($record->is_checked)
-                        <a href="#" class="btn btn-success"> Checked </a>
+                        <a href="#" class="btn btn-success"> Complete </a>
                     @else
                         <a href="#" class="btn btn-warning"> Not Checked </a>
                     @endif
