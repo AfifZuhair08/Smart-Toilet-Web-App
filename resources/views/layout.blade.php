@@ -58,7 +58,7 @@
       <li class="nav-item">
           <h5><a class="nav-link collapsed" href="/posts" data-toggle="collapse" data-target="#collapsePost" aria-expanded="true" aria-controls="collapseTwo">
             <!--<i class="fas fa-fw fa-cog"></i>-->
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-fw fa-blog"></i>
             {{-- <span>Posts</span> --}} Posts
           </a></h5>
           <div id="collapsePost" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -120,15 +120,6 @@
         </div>
       </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        <h6>Manage</h6>
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <h5>
         <a class="nav-link collapsed" href="/servicetask" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages1">
@@ -141,6 +132,30 @@
             <a class="collapse-item" href="/tasks/create">Create task</a>
             <a class="collapse-item" href="/tasks">All Task</a>
             <a class="collapse-item" href="/tasks/status">All Tasks Status</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        <h6>Manage</h6>
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <h5>
+        <a class="nav-link collapsed" href="/databaserecord" data-toggle="collapse" data-target="#collapseInventory" aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fas fa-fw fa-warehouse"></i>
+          {{-- <span>Record</span> --}}Inventory
+        </a></h5>
+        <div id="collapseInventory" class="collapse" aria-labelledby="collapseInventory" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Dispensers:</h6>
+            <a class="collapse-item" href="/dispenser">All Dispensers</a>
+            <a class="collapse-item" href="/dispenser/create">Register New</a>
           </div>
         </div>
       </li>

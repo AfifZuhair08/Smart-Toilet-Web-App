@@ -59,6 +59,8 @@ Route::middleware(['auth', 'manager'])->group(function () {
     // Route::get('monitorTissue','SensorTissueController@graph');
     // Route::resource('monitorSoap','SensorSoapController');
 
+    //staffs
+    Route::resource('dispenser','ToiletDispenserController');
 
     //MONITOR TISSUE DISPENSER
     // Send data

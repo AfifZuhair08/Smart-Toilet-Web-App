@@ -20,7 +20,7 @@
 <div class="container-fluid">
     @if (count($tasks) > 0)
     <table class="table table-hover table-sm table-bordered">
-        <thead class="thead-dark">
+        <thead class="thead-light">
             <tr class="d-flex">
                 <th class="col-4">Tasks</th>
                 <th class="col-sm-2">Staff</th>

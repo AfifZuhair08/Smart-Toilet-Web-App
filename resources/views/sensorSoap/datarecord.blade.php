@@ -17,26 +17,28 @@
         <table class="table table-hover table-sm table-bordered">
             <thead class="thead-dark">
                 <tr class="d-flex">
-                    <th class="col-3">Date</th>
-                    <th class="col-3">Time</th>
-                    <th class="col-sm-3">ID</th>
-                    <th class="col-sm-3">Value (mm)</th>
+                    <th class="col-2">Date</th>
+                    <th class="col-2">Time</th>
+                    <th class="col-sm-3">Dispenser ID</th>
+                    <th class="col-sm-3">Entry ID</th>
+                    <th class="col-sm-2">Level (mm)</th>
                 </tr>
             </thead>
             @foreach ($sensorStateSs as $sensorStateS)
             <tbody>
                 <tr class="d-flex">
-                    <th class="col-3">{{$sensorStateS->entryDate->format('D d/m/y')}}</th>
-                    <th class="col-3">{{$sensorStateS->entryDate->format('g:i:s A')}}</th>
+                    <th class="col-2">{{$sensorStateS->entryDate->format('D d/m/y')}}</th>
+                    <th class="col-2">{{$sensorStateS->entryDate->format('g:i:s A')}}</th>
+                    <th class="col-sm-3">{{$sensorStateS->dispenserID}}</th>
                     <th class="col-sm-3">{{$sensorStateS->ssID}}</th>
-                    <th class="col-sm-3">{{$sensorStateS->sensorValue}}</th>
+                    <th class="col-sm-2">{{$sensorStateS->sensorValue}}</th>
                 </tr>
             </tbody>    
             @endforeach
-            <small>
-                {{$sensorStateSs->links()}}
-            </small>
-        </table>    
+        </table>
+        <small>
+            {{$sensorStateSs->links()}}
+        </small>
     @else
         <p>No data of Tissue Dispenser</p>
     @endif

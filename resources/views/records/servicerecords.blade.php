@@ -21,12 +21,12 @@
 <div class="container-fluid">
     @if (count($records) > 0)
     <table class="table table-hover table-sm table-bordered">
-        <thead class="thead-dark">
+        <thead class="thead-light">
             <tr class="d-flex">
-                <th class="col-1">ID</th>
+                <th class="col-1">Record ID</th>
                 <th class="col-5">Notes</th>
-                <th class="col-2">Staff</th>
-                <th class="col-1">Task Associated</th>
+                <th class="col-2">Submitted by</th>
+                <th class="col-1">Task Ref.</th>
                 <th class="col-1">Status</th>
                 <th class="col-2">Date & Time Submitted</th>
             </tr>
@@ -39,16 +39,16 @@
                 <th class="col-2">{{ ucwords($record->staff->name)}}</th>
                 <th class="col-1 text-center">
                     @if(!empty($record->task_id))
-                        <a href="/tasks/{{$record->task_id}}" class="btn btn-success"> View Task</a>
+                        <a href="/tasks/{{$record->task_id}}" class="btn btn-outline-info"> View Task</a>
                     @else
-                        No
+                        -
                     @endif
                 </th>
                 <th class="col-1 text-center">
                     @if ($record->is_checked)
-                        <a href="#" class="btn btn-success"> Complete </a>
+                        <a href="#" class="btn btn-success disabled"> Completed </a>
                     @else
-                        <a href="#" class="btn btn-warning"> Not Checked </a>
+                        <a href="#" class="btn btn-warning disabled"> Not Checked </a>
                     @endif
                 </th>
                 <th class="col-2">{{$record->created_at}}</th>

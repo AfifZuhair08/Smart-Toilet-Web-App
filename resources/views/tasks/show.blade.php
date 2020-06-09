@@ -16,11 +16,11 @@
 <p></p>
 
 <div class="card">
-    <div class="card-header text-white bg-dark">
+    <div class="card-header">
         <div class="d-flex">
             {{-- post title --}}
             <div class="p-2 align-self-center">
-                <h3 class="text-white">Task: {{$task->task_title}}</h3>
+                <h3>Task: {{$task->task_title}}</h3>
             </div>
 
             {{-- buttons --}}
@@ -100,10 +100,10 @@
         </div>
     </div>
     {{-- <hr> --}}
-    <div class="card-header text-white bg-secondary">
-        <h5>
-            Record Service
-        </h5>
+    <div class="card-header">
+        <h4>
+            Record Service Details
+        </h4>
     </div>
     <div class="card-body">
         <table class="table table-sm table-borderless">
@@ -120,7 +120,6 @@
 
                 <tr class="d-flex">
                     <th class="col-6">
-
                     </th>
                     <th class="col-6" style="text-align: right">
                         <p>
