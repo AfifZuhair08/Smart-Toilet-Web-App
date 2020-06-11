@@ -2,7 +2,7 @@
 @section('main-content')
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Inventory</h1>
+    <h1 class="h3 mb-0 text-gray-800">Dispenser Inventory</h1>
     <a href="/dispenser/create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Register New Dispenser</a>
 </div>
 <hr>
@@ -44,7 +44,7 @@
 </div>
 
 <br>
-<h4 class="mb-0 text-gray-800">Dispenser List</h4>
+<h5 class="mb-0 text-gray-800">Lists of Registered Dispenser</h5>
 <br>
 <div class="container-fluid">
     @if (count($alldispensers) > 0)
@@ -57,7 +57,7 @@
                     <th class="col-sm-2">Location</th>
                     <th class="col-sm-4">Description</th>
                     <th class="col-1">Real-time Status</th>
-                    <th class="col-sm-1">Action</th>
+                    <th class="col-sm-1">Details</th>
                 </tr>
             </thead>
             @foreach ($alldispensers as $alldispenser)

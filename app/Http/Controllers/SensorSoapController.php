@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SensorSoap;
+use App\ToiletDispenser;
 use Carbon\Carbon;
 
 class SensorSoapController extends Controller
@@ -103,6 +104,11 @@ class SensorSoapController extends Controller
         $labels = $todayentryDates;
         $data = $todayentryValues;
         return response()->json(compact('labels','data'));
+    }
+
+    public function getAllSoapDispenser(){
+        $Tdispensers = ToiletDispenser::where('dispenserType','=','sensor_soap')->get();
+        return view('toiletDispenser.monitorSD')->with('Tdispensers', $Tdispensers);
     }
 
 }

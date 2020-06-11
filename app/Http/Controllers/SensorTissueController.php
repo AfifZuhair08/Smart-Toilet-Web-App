@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\SensorTissue;
+use App\ToiletDispenser;
 use App\Http\Resources\SensorTissue as SensorTissueResource;
 use Carbon\Carbon;
 use DB;
@@ -129,6 +130,11 @@ class SensorTissueController extends Controller
         $data = $todayentryValues;
         return response()->json(compact('labels','data'));
         // return $todayentry;
+    }
+
+    public function getAllTissueDispenser(){
+        $Tdispensers = ToiletDispenser::where('dispenserType','=','sensor_tissue')->get();
+        return view('toiletDispenser.monitorTD')->with('Tdispensers', $Tdispensers);
     }
 
     /**

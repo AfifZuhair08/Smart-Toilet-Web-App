@@ -89,11 +89,13 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Tissue Dispenser:</h6>
-            <a class="collapse-item" href="/rtmTissueToday" target="_blank">Real-Time Data</a>
+            {{-- <a class="collapse-item" href="/rtmTissueToday" target="_blank">Real-Time Data</a> --}}
+            <a class="collapse-item" href="/toiletDispenser/monitorTD">Locations</a>
             <a class="collapse-item" href="/rtmTissue">Monthly Entries</a>
             <div class="dropdown-divider"></div>
             <h6 class="collapse-header">Soap Dispenser:</h6>
-            <a class="collapse-item" href="/rtmSoapToday" target="_blank">Real-Time Data</a>
+            {{-- <a class="collapse-item" href="/rtmSoapToday" target="_blank">Real-Time Data</a> --}}
+            <a class="collapse-item" href="/toiletDispenser/monitorSD">Locations</a>
             <a class="collapse-item" href="/rtmSoap">Monthly Entries</a>
           </div>
         </div>
@@ -155,7 +157,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Dispensers:</h6>
             <a class="collapse-item" href="/dispenser">All Dispensers</a>
-            <a class="collapse-item" href="/dispenser/create">Register New</a>
+            <a class="collapse-item" href="/dispenser/create">Register</a>
           </div>
         </div>
       </li>

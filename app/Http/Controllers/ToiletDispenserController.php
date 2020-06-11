@@ -11,6 +11,7 @@ use App\User;
 use App\ToiletDispenser;
 use App\SensorTissue;
 use App\SensorSoap;
+use DB;
 
 class ToiletDispenserController extends Controller
 {
@@ -108,6 +109,14 @@ class ToiletDispenserController extends Controller
         ->with('dispenser', $dispenser)
         ->with('sensorRecords', $sensorRecords);
 
+    }
+
+    public function showLocations()
+    {   
+        // $dispenserLocations = ToiletDispenser::select('dispenserID','dispenserType', DB::raw('location'))->get()->groupBy('location');        
+        $dispenserLocations = ToiletDispenser::orderBy('location','asc')->get();
+        // return $dispenserLocations;
+        return view('toiletDispenser.locations')->with('dispenserLocations', $dispenserLocations);
     }
 
     /**

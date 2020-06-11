@@ -12,8 +12,8 @@
         {{-- <i class="fas fa-blog fa-sm text-white-50"></i>     --}}
         View All Task
     </a>
-    <p></p>
 </div>
+<br>
 
 @include('inc.cpmessage')
 
@@ -33,16 +33,15 @@
     </div>
 </div>
 
-{{-- <div class="row"> --}}
-<div class="col-9">
-    {{-- place to choose to which staff did the task is assigned to --}}
-
-</div>
-<div class="col">
+<div class="col-3">
     <div class="form-group">
-        {{-- {{Form::label('staff_id', 'Available Staff')}}<div></div> --}}
-        {{-- {{Form::select('staff_id',null, $staffs,['class'=>'form-control','placeholder'=>'Choose category'])}} --}}
-        {{-- {{Form::select('staff_id', [null=>'-----Please Select------'] + $staffs)}} --}}
+        {!! Form::Label('item', 'Toilet Location') !!}
+        <select class="form-control" name="location">
+            <option value="">----Select Location----</option>
+          @foreach($dispensers as $dispenser)
+            <option value="{{$dispenser->location}}">{{$dispenser->location}}</option>
+          @endforeach
+        </select>
     </div>
 </div>
 
@@ -57,7 +56,6 @@
         </select>
     </div>
 </div>
-
 
 <div class="col-9">
     {{Form::submit('Submit',['class'=>'btn btn-success btn-md btn-block'])}}

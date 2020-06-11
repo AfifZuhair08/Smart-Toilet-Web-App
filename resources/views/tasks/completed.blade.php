@@ -39,7 +39,7 @@
                         <tr class="d-flex">
                             <th class="col-6">
                                 <p>Person in charge :
-                                    <a href="/staffs/{{$task->staff_id}}"><b>{{ ucwords($task->staff->name)}}</b></a>
+                                    <a href="/staffs/{{$task->staff_id}}"><b>{{ucwords($task->staff->name)}}</b></a>
                                 </p>
                             </th>
                             <th class="col-6" style="text-align: right">
@@ -53,10 +53,16 @@
                                 </p>
                             </th>
                         </tr>
+                        <tr class="d-flex">
+                            <th class="col-6">
+                                <p><b> Reminder message : </b>{{$task->task_description}}</p>
+                            </th>
+                            <th class="col-6" style="text-align: right">
+                                <p><b> Location : </b>{{$task->toilet_location}}
+                                </p>
+                            </th>
+                        </tr>
                     </table>
-                    <div>
-                        <p><b> Reminder message : </b>{{$task->task_description}}</p>
-                    </div>
                 </div>
             </div>
         </div>

@@ -17,7 +17,7 @@ use App\SensorSoap;
 use App\Task;
 use App\Post;
 use App\RecordService;
-
+use App\ToiletDispenser;
 
 class MobileModelController extends Controller
 {
@@ -35,16 +35,13 @@ class MobileModelController extends Controller
         }
 
         $staff_id = $request->input('id');
-
         $user = Staff::find($staff_id);
 
         $userTaskCompleted = Task::where('is_complete','=','1')
         ->where('staff_id','=', $staff_id)->count();
-
         $userTaskInCompleted = Task::where('is_complete','=','0')
         ->where('staff_id','=', $staff_id)->count();
 
-        // $posts = Post::orderBy('created_at','desc')->take(1)->get();
         $posts = Post::orderBy('created_at','desc')->latest()->get();
 
         return response()->json([
@@ -54,7 +51,6 @@ class MobileModelController extends Controller
             'userTaskInCompleted' => $userTaskInCompleted,
             'posts' => $posts
         ]);
-
     }
 
     // Posts
@@ -71,14 +67,11 @@ class MobileModelController extends Controller
         }
 
         $staff_id = $request->input('id');
-
         $posts = Post::orderBy('created_at','desc')->get();
-
         return response()->json([
             'success' => true,
             'posts' => $posts
         ]);
-
     }
 
     // Tissue Dispenser data
@@ -97,7 +90,6 @@ class MobileModelController extends Controller
         
         $input = $request->all();
         $input['id'] = $input['id'];
-
         $sensorT = SensorTissue::latest('entryDate')->first();
         $sensorS = SensorSoap::latest('entryDate')->first();
         
@@ -124,7 +116,6 @@ class MobileModelController extends Controller
         
         $input = $request->all();
         $input['id'] = $input['id'];
-
         $sensor = SensorTissue::latest('entryDate')->first();
         
         return response()->json([
@@ -149,7 +140,6 @@ class MobileModelController extends Controller
         
         $input = $request->all();
         $input['id'] = $input['id'];
-
         $sensor = SensorTissue::orderBy('entryDate','desc')->paginate(30);
         $sensorcount = SensorTissue::count();
         
@@ -176,7 +166,6 @@ class MobileModelController extends Controller
         
         $input = $request->all();
         $input['id'] = $input['id'];
-
         $sensor = SensorSoap::orderBy('entryDate', 'desc')->paginate(1);
         
         return response()->json([
@@ -201,7 +190,6 @@ class MobileModelController extends Controller
         
         $input = $request->all();
         $input['id'] = $input['id'];
-
         $sensor = SensorSoap::orderBy('entryDate', 'desc')->paginate(30);
         $sensorcount = SensorSoap::count();
         
@@ -228,9 +216,7 @@ class MobileModelController extends Controller
 
         $input = $request->all();
         $input_id = $input['id'];
-
         $tasks = Task::where('staff_id','=', $input_id)->orderBy('created_at','desc')->get();
-        // $tasks = Task::orderBy('created_at','desc')->paginate(2);
 
         return response()->json([
             'success' => true,
@@ -239,7 +225,7 @@ class MobileModelController extends Controller
 
     }
 
-    // View single Task by task_id
+    // View single Task by task_id assigned to the user
     public function taskShowById(Request $request){
         
         $validator = Validator::make($request->all(), [
@@ -256,18 +242,37 @@ class MobileModelController extends Controller
 
         $input = $request->all();
         $task_id = $input['task_id'];
-
         $tasks = Task::where('id','=', $task_id)->get();
-        // $tasks = Task::orderBy('created_at','desc')->paginate(2);
-
+        
+        // dispenser current status by their location included in this api
+        foreach($tasks as $task){
+            $locations = ToiletDispenser::select('location','dispenserID')->where('location', $task->toilet_location)->get();
+        }
+        if(strpos($locations[0]->dispenserID, "TD") !== false){
+            $dispenserT = SensorTissue::orderBy('entryDate','desc')
+            ->where('dispenserID', $locations[0]->dispenserID)->latest()->get();
+            $dispenserS = SensorSoap::orderBy('entryDate','desc')
+            ->where('dispenserID', $locations[1]->dispenserID)->latest()->get();
+        }else if(strpos($locations[1]->dispenserID, "TD") !== false){
+            $dispenserT = SensorTissue::orderBy('entryDate','desc')
+            ->where('dispenserID', $locations[1]->dispenserID)->latest()->get();
+            $dispenserS = SensorSoap::orderBy('entryDate','desc')
+            ->where('dispenserID', $locations[0]->dispenserID)->latest()->get();
+        }else{
+            $dispenserT = null;
+            $dispenserS = null;
+        }
+        
         return response()->json([
             'success' => true,
             'tasks' => $tasks,
+            'dispenserT' => $dispenserT,
+            'dispenserS' => $dispenserS
         ]);
 
     }
 
-    // Tasks by individual users
+    // All records by the user
     public function countallrecords(Request $request){
         
         $validator = Validator::make($request->all(), [
@@ -294,10 +299,9 @@ class MobileModelController extends Controller
             'sensorT' => $sensorT,
             'sensorS' => $sensorS
         ]);
-
     }
 
-    // Tasks by individual users
+    // All Service Records
     public function viewAllServiceRecords(Request $request){
         
         $validator = Validator::make($request->all(), [
@@ -313,14 +317,12 @@ class MobileModelController extends Controller
 
         $input = $request->all();
         $input_id = $input['id'];
-
         $records = RecordService::orderBy('created_at','desc')->where('staff_id','=', $input_id)->get();
 
         return response()->json([
             'success' => true,
             'service_records' => $records
         ]);
-
     }
 
 
@@ -350,6 +352,5 @@ class MobileModelController extends Controller
           'user' => $user,
         //   'id' => $this->$id,
         ]);
-    
     }
 }

@@ -20,8 +20,8 @@
     <table class="table table-bordered">
         <thead class="thead-light">
             <tr>
-                <th class="" style="width: 10%">Date</th>
-                <th class="" style="width: 50%">Post Title</th>
+                <th class="" style="width: 15%">Date</th>
+                <th class="" style="width: 45%">Post Title</th>
                 <th class="" style="width: 10%"></th>
                 <th class="text-center" style="width: 10%" colspan="2">Settings</th>
                 {{-- <th class="text-center" style="width: 10%">Delete</th> --}}

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Staff;
 use App\User;
 use App\RecordService;
+use App\ToiletDispenser;
 
 use Auth;
 
@@ -76,8 +77,11 @@ class TaskController extends Controller
             return redirect()->route('staff');
         }
         $users = User::select('name','id')->where('role_id','=','2')->get();
+        $dispensers = ToiletDispenser::select('location')->groupBy('location')->get();
 
-        return view('tasks.create', compact('users'));
+        return view('tasks.create')
+        ->with('users', $users)
+        ->with('dispensers', $dispensers);
         // return $users;
     }
 
@@ -92,10 +96,12 @@ class TaskController extends Controller
         $this->validate($request,[
             'task_title' => 'required',
             'task_description' => 'required',
+            'location' => 'required',
             'user_id' => 'required',
         ],[
             'task_title.required' => 'Title should be filled',
             'task_description.required' => 'Description should be filled',
+            'location.required' => 'Location should be selected',
             'user_id.required' => 'Assigning available staff is required'
         ]);
 
@@ -103,6 +109,7 @@ class TaskController extends Controller
         $tasks = new Task;
         $tasks->task_title = $request->input('task_title');
         $tasks->task_description = $request->input('task_description');
+        $tasks->toilet_location = $request->input('location');
         $tasks->is_complete = false;
         $tasks->record_service_id = false;
 

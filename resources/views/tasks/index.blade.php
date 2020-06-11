@@ -58,10 +58,16 @@
                                 </p>
                             </th>
                         </tr>
+                        <tr class="d-flex">
+                            <th class="col-6">
+                                <p><b> Reminder message : </b>{{$task->task_description}}</p>
+                            </th>
+                            <th class="col-6" style="text-align: right">
+                                <p><b> Location : </b>{{$task->toilet_location}}
+                                </p>
+                            </th>
+                        </tr>
                     </table>
-                    <div>
-                        <p><b> Reminder message : </b>{{$task->task_description}}</p>
-                    </div>
                 </div>
             </div>
         </div>
