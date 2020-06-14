@@ -22,14 +22,23 @@
                 <h1 class="h3 mb-0 text-gray-800">Record > Real-Time Tissue Dispenser State</h1>
             </div>
             <hr>
-            <p>This is the record of data send from the tissue dispenser</p>
+            @foreach ($dispenser as $item)
+            <div class="flex">
+                <h5> Dispenser ID : <b>{{$item->dispenserID}}</b> | Location : <b>{{$item->location}}</b></h5>
+                <script type="text/javascript">
+                    var dispenserID = @json($item->dispenserID);
+                    console.log(dispenserID);
+                </script>
+            </div>
+            <br>
+            @endforeach
             <div class="container-fluid">
                 <!-- Area Chart Example-->
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-area-chart"></i> Tissue Dispenser State </div>
                     <div class="card-body">
-                        <canvas id="ChartT_Today" width="100%" height="30"></canvas>
+                        <canvas id="ChartT_Today" width="100%" height="25"></canvas>
                     </div>
                     <div class="card-footer small text-muted">Updated at @php  echo date('j F Y , h:i:s a' , time() ) @endphp</div>
                 </div>
@@ -37,8 +46,7 @@
         </div>
     </div>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js">
-</script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script src="{{url( '/vendor/chart.js/Chart.min.js' )}}"></script>
 <script src="{{url( '/vendor/chart.js/TissueChartToday.js' )}}"></script>
 <script>

@@ -76,13 +76,13 @@
                     <th class="col-sm-4">{{$alldispenser->description}}</th>
                     <th class="col-1" style="text-align: center">
                         @if ($alldispenser->dispenserType == 'sensor_tissue')
-                            <a href="/rtmTissueToday" target="_blank">
+                        <a href="/rtmTissueToday/{{$alldispenser->dispenserID}}" target="_blank">
                                 <i class="fas fa-fw fa-chart-area"></i>
                             </a>
                         @else
-                            <a href="/rtmSoapToday" target="_blank">
-                                <i class="fas fa-fw fa-chart-area"></i>
-                            </a>
+                          <a href="/rtmSoapToday/{{$alldispenser->dispenserID}}" target="_blank">
+                              <i class="fas fa-fw fa-chart-area"></i>
+                          </a>
                         @endif
                     </th>
                     <th class="col-sm-1" style="text-align: center">

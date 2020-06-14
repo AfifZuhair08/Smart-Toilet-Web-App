@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
 use App\SensorTissue;
 use App\ToiletDispenser;
@@ -96,13 +97,19 @@ class SensorTissueController extends Controller
         return $todayentry;
     }
 
-    public function getAllDaily15Entries(){
+    public function rtmTissue($id){
+        $dispenser = SensorTissue::where('dispenserID','=', $id)->latest()->get();
+        // return $dispenserID;
+        return view('sensorTissue/rtmTissueToday')->with('dispenser', $dispenser);
+    }
+
+    public function getAllDaily15Entries($id){
         $todayentryDates = array();
-        $todayentryDates = SensorTissue::latest()->take(15)->get()->sortBy('entryDate')->pluck('tsID');
+        $todayentryDates = SensorTissue::latest()->where('dispenserID','=', $id)->take(15)->get()->sortBy('entryDate')->pluck('tsID');
         $todayentryDates = json_decode($todayentryDates);
 
         $todayentryValues = array();
-        $todayentryValues = SensorTissue::latest()->take(15)->get()->sortBy('entryDate')->pluck('sensorValue');
+        $todayentryValues = SensorTissue::latest()->where('dispenserID','=', $id)->take(15)->get()->sortBy('entryDate')->pluck('sensorValue');
         $todayentryValues = json_decode($todayentryValues);
 
         $labels = $todayentryDates;

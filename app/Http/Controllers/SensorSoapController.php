@@ -92,13 +92,19 @@ class SensorSoapController extends Controller
         return response()->json(compact('labels','data'));
     }
 
-    public function getAllDaily15Entries(){
+    public function rtmSoap($id){
+        $dispenser = SensorSoap::where('dispenserID','=', $id)->latest()->get();
+        // return $dispenserID;
+        return view('sensorSoap/rtmSoapToday')->with('dispenser', $dispenser);
+    }
+
+    public function getAllDaily15Entries($id){
         $todayentryDates = array();
-        $todayentryDates = SensorSoap::latest()->take(15)->get()->sortBy('entryDate')->pluck('ssID');
+        $todayentryDates = SensorSoap::latest()->where('dispenserID','=', $id)->take(15)->get()->sortBy('entryDate')->pluck('ssID');
         $todayentryDates = json_decode($todayentryDates);
 
         $todayentryValues = array();
-        $todayentryValues = SensorSoap::latest()->take(15)->get()->sortBy('entryDate')->pluck('sensorValue');
+        $todayentryValues = SensorSoap::latest()->where('dispenserID','=', $id)->take(15)->get()->sortBy('entryDate')->pluck('sensorValue');
         $todayentryValues = json_decode($todayentryValues);
 
         $labels = $todayentryDates;

@@ -73,11 +73,9 @@ Route::middleware(['auth', 'manager'])->group(function () {
         return view('sensorTissue/rtmTissue');
     });
     // Graph Daily 15 last Entry
-    Route::get('rtmTissueToday', function(){
-        return view('sensorTissue/rtmTissueToday');
-    });
     Route::get('toiletDispenser/monitorTD','SensorTissueController@getAllTissueDispenser');
-    Route::get('get_Tdata','SensorTissueController@getAllDaily15Entries');
+    Route::get('rtmTissueToday/{id}', 'SensorTissueController@rtmTissue');
+    Route::get('get_Tdata/{id}','SensorTissueController@getAllDaily15Entries');
     // Graph Today Only Entry
     Route::get('get_today_STdata','SensorTissueController@getTodayEntries');
 
@@ -90,11 +88,9 @@ Route::middleware(['auth', 'manager'])->group(function () {
     });
     Route::get('get_Schart_monthly_data','SensorSoapController@getMonthlyEntry');
     // Graph Daily 15 last Entry
-    Route::get('rtmSoapToday', function(){
-        return view('sensorSoap/rtmSoapToday');
-    });
+    Route::get('rtmSoapToday/{id}', 'SensorSoapController@rtmSoap');
+    Route::get('get_Sdata/{id}','SensorSoapController@getAllDaily15Entries');
     Route::get('toiletDispenser/monitorSD','SensorSoapController@getAllSoapDispenser');
-    Route::get('get_Sdata','SensorSoapController@getAllDaily15Entries');
     // Graph Today Only Entry
     Route::get('get_today_SSdata','SensorSoapController@getTodayEntries');
 });

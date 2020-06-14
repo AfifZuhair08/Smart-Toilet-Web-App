@@ -23,14 +23,14 @@
 
 <br><br><br>
 
-<div>
+<div class="container-sm col-sm-6">
     <div class="row justify-content-start">
-        <div class="col-1"><b>Dispenser ID</b> </div>
-        <div class="col-4">: {{$dispenser->dispenserID}}</div>
+        <div class="col-2"><b>Dispenser ID</b> </div>
+        <div class="col">: {{$dispenser->dispenserID}}</div>
     </div>
     <div class="row justify-content-start">
-        <div class="col-1"><b>Type</b></div>
-        <div class="col-4">: 
+        <div class="col-2"><b>Type</b></div>
+        <div class="col">: 
             @if ($dispenser->dispenserType == 'sensor_tissue')
                 Tissue Dispenser
             @else
@@ -39,17 +39,23 @@
         </div>
     </div>
     <div class="row justify-content-start">
-        <div class="col-1"><b>Location</b></div>
-        <div class="col-4">: {{$dispenser->location}}</div>
+        <div class="col-2"><b>Location</b></div>
+        <div class="col">: {{$dispenser->location}}</div>
     </div>
     <div class="row justify-content-start">
-        <div class="col-1"><b>Description</b></div>
-        <div class="col-4">: {{$dispenser->description}}</div>
+        <div class="col-2"><b>Description</b></div>
+        <div class="col">: {{$dispenser->description}}</div>
     </div>
 </div>
-
 <br><br>
-
+<h4>Real-time Graph</h4>
+<p>
+    @if ($dispenser->dispenserType == 'sensor_tissue')
+        <a href="/rtmTissueToday/{{$dispenser->dispenserID}}" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">View</a>
+    @else
+        <a href="/rtmSoapToday/{{$dispenser->dispenserID}}" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">View</a>
+    @endif
+</p><br>
 <h4>State Records</h4><br>    
 <div class="container-sm col-md-9">
     @if (count($sensorRecords) > 0)

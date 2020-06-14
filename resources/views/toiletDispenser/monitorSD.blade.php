@@ -14,7 +14,7 @@
 
 <br><br>
 
-<h5>Dispenser Location</h5><br>
+<h5>All Soap Dispenser Location</h5><br>
 <div class="container-sm">
     <div class="align-content-start">
         @if (count($Tdispensers) > 0)

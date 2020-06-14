@@ -10,7 +10,11 @@
         },
 
         ajaxGetMonthlyEntry: function() {
-            var urlPath = "http://" + window.location.hostname + "/get_Tdata";
+            var urlPath =
+                "http://" +
+                window.location.hostname +
+                "/get_Tdata/" +
+                dispenserID;
             var request = $.ajax({
                 method: "GET",
                 url: urlPath

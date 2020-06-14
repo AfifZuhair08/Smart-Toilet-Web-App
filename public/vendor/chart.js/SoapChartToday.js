@@ -10,7 +10,11 @@
         },
 
         ajaxGetMonthlyEntry: function() {
-            var urlPath = "http://" + window.location.hostname + "/get_Sdata";
+            var urlPath =
+                "http://" +
+                window.location.hostname +
+                "/get_Sdata/" +
+                dispenserID;
             var request = $.ajax({
                 method: "GET",
                 url: urlPath
