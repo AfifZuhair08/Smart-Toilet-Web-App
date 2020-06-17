@@ -28,7 +28,7 @@
                                 <a href="/dispenser/{{$Tdispenser->id}}">
                                     {{$Tdispenser->dispenserID}}
                                 </a>
-                                <a href="/rtmTissueToday/{{$Tdispenser->dispenserID}}" class="btn btn-info float-right" target="_blank">
+                                <a href="/rtmSoapToday/{{$Tdispenser->dispenserID}}" class="btn btn-info float-right" target="_blank">
                                     <i class="fas fa-fw fa-chart-area"></i>
                                 </a>
                             </p>

@@ -32,10 +32,14 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('/posts','MobileAPI\MobileModelController@posts');
 
     Route::post('/mainMonitor','MobileAPI\MobileModelController@mainMonitoring');
-    Route::post('/tD','MobileAPI\MobileModelController@tissueDispenserLatest');
+
     Route::post('/tDList','MobileAPI\MobileModelController@tissueDispenserLists');
-    Route::post('/sD','MobileAPI\MobileModelController@soapDispenserLatest');
+    Route::post('/tD','MobileAPI\MobileModelController@tissueDispenserLatest');
+    Route::post('/tDVList','MobileAPI\MobileModelController@tissueDispenserValues');
+
     Route::post('/sDList','MobileAPI\MobileModelController@soapDispenserLists');
+    Route::post('/sD','MobileAPI\MobileModelController@soapDispenserLatest');
+    Route::post('/sDVList','MobileAPI\MobileModelController@soapDispenserValues');
 
     Route::post('/sensorT','MobileAPI\MobileResponseController@tissueDispenserEntry');
     Route::post('/sensorS','MobileAPI\MobileResponseController@soapDispenserEntry');

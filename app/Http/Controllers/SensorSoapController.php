@@ -93,7 +93,7 @@ class SensorSoapController extends Controller
     }
 
     public function rtmSoap($id){
-        $dispenser = SensorSoap::where('dispenserID','=', $id)->latest()->get();
+        $dispenser = SensorSoap::where('dispenserID','=', $id)->latest()->limit(1)->get();
         // return $dispenserID;
         return view('sensorSoap/rtmSoapToday')->with('dispenser', $dispenser);
     }

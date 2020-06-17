@@ -44,7 +44,7 @@
                 </th>
                 <th class="col-1 text-center">
                     @if ($record->is_checked)
-                        <a href="#" class="btn btn-success disabled"> Completed </a>
+                        <a href="#" class="btn btn-success disabled"> Checked </a>
                     @else
                         <a href="#" class="btn btn-warning disabled"> Not Checked </a>
                     @endif

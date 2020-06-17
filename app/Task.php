@@ -32,8 +32,6 @@ class Task extends Model
         'is_complete',
     ];
 
-    // public $string = ['task_title', 'task_description', 'is_complete'];
-
     /**
      * The relationship to the owning user.
      *

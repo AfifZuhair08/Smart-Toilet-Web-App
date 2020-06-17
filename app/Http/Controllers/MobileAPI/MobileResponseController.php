@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Input, Redirect;
 use Auth;
-
 use App\User;
 use App\SensorTissue;
 use App\SensorSoap;
+use App\ToiletDispenser;
 use App\Task;
 use App\RecordService;
 
@@ -22,18 +22,37 @@ class MobileResponseController extends Controller
     public function tissueDispenserEntry(Request $request){
 
         $validator = Validator::make($request->all(), [
+            'dispenserID' => 'required',
+            'location' => 'required',
             'sensorValue' => 'required',
+            'sensorStatus' => 'required'
         ]);
 
         if ($validator->fails()) {
             return response()->json([
+                'success' => false,
+                'status' => $validator->errors(),
+                'message' => 'Sent from Smart Toilet Web Server'
+            ], 401);
+        }
+
+        $dispenserID = $request->input('dispenserID');
+        $validate = ToiletDispenser::where('dispenserID','=', $dispenserID)->first();
+        
+        if($validate == null){
+            return response()->json([
             'success' => false,
-            'message' => $validator->errors(),
+            'validate' => $validate,
+            'status' => 'dispenser are not registered',
+            'message' => 'Sent from Smart Toilet Web Server'
             ], 401);
         }
         
         $sensorTissue = new SensorTissue;
+        $sensorTissue->dispenserID = $request->input('dispenserID');
+        $sensorTissue->location = $request->input('location');
         $sensorTissue->sensorValue = $request->input('sensorValue');
+        $sensorTissue->sensorStatus = $request->input('sensorStatus');
 
         $sensorTissue->save();
 
@@ -48,18 +67,37 @@ class MobileResponseController extends Controller
     public function soapDispenserEntry(Request $request){
 
         $validator = Validator::make($request->all(), [
+            'dispenserID' => 'required',
+            'location' => 'required',
             'sensorValue' => 'required',
+            'sensorStatus' => 'required'
         ]);
 
         if ($validator->fails()) {
             return response()->json([
             'success' => false,
             'message' => $validator->errors(),
+            'message' => 'Sent from Smart Toilet Web Server'
+            ], 401);
+        }
+
+        $dispenserID = $request->input('dispenserID');
+        $validate = ToiletDispenser::where('dispenserID','=', $dispenserID)->first();
+        
+        if($validate == null){
+            return response()->json([
+            'success' => false,
+            'validate' => $validate,
+            'status' => 'dispenser are not registered',
+            'message' => 'Sent from Smart Toilet Web Server'
             ], 401);
         }
         
         $sensorSoap = new SensorSoap;
+        $sensorSoap->dispenserID = $request->input('dispenserID');
+        $sensorSoap->location = $request->input('location');
         $sensorSoap->sensorValue = $request->input('sensorValue');
+        $sensorSoap->sensorStatus = $request->input('sensorStatus');
 
         $sensorSoap->save();
 

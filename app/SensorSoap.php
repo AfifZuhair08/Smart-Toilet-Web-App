@@ -15,6 +15,10 @@ class SensorSoap extends Model
     // Timestamps
     public $timestamp = true;
 
+    public $fillable = [
+        'dispenserID','location','sensorStatus',
+    ];
+
     const CREATED_AT = 'entryDate';
     const UPDATED_AT = 'entryDate'; 
 

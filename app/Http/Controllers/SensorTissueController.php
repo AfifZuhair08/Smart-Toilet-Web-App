@@ -98,7 +98,7 @@ class SensorTissueController extends Controller
     }
 
     public function rtmTissue($id){
-        $dispenser = SensorTissue::where('dispenserID','=', $id)->latest()->get();
+        $dispenser = SensorTissue::where('dispenserID','=', $id)->latest()->limit(1)->get();
         // return $dispenserID;
         return view('sensorTissue/rtmTissueToday')->with('dispenser', $dispenser);
     }

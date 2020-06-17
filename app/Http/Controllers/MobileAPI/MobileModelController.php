@@ -87,9 +87,7 @@ class MobileModelController extends Controller
             'message' => $validator->errors(),
             ], 401);
         }
-        
-        $input = $request->all();
-        $input['id'] = $input['id'];
+
         $sensorT = SensorTissue::latest('entryDate')->first();
         $sensorS = SensorSoap::latest('entryDate')->first();
         
@@ -100,11 +98,34 @@ class MobileModelController extends Controller
         ]);
     }
 
-    // Tissue Dispenser data
+    // Tissue Dispenser Sensor Values
+    public function tissueDispenserLists(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'id' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+            'success' => false,
+            'message' => $validator->errors(),
+            ], 401);
+        }
+
+        $Tdispensers = ToiletDispenser::where('dispenserType','=','sensor_tissue')->get();
+        
+        return response()->json([
+            'success' => true,
+            'Tdispensers' => $Tdispensers
+        ]);
+    }
+
+    // Tissue Dispenser Latest
     public function tissueDispenserLatest(Request $request){
 
         $validator = Validator::make($request->all(), [
             'id' => 'required',
+            'dispenserID' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -113,22 +134,22 @@ class MobileModelController extends Controller
             'message' => $validator->errors(),
             ], 401);
         }
-        
-        $input = $request->all();
-        $input['id'] = $input['id'];
-        $sensor = SensorTissue::latest('entryDate')->first();
+
+        $dispenserID = $request->input('dispenserID');
+        $sensorValue = SensorTissue::orderBy('entryDate', 'desc')->where('dispenserID','=',$dispenserID)->paginate(1);
         
         return response()->json([
             'success' => true,
-            'sensor' => $sensor,
+            'sensorValue' => $sensorValue,
         ]);
     }
 
-    // Tissue Dispenser data
-    public function tissueDispenserLists(Request $request){
+    // Tissue Dispenser Sensor Values
+    public function tissueDispenserValues(Request $request){
 
         $validator = Validator::make($request->all(), [
             'id' => 'required',
+            'dispenserID' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -137,16 +158,35 @@ class MobileModelController extends Controller
             'message' => $validator->errors(),
             ], 401);
         }
-        
-        $input = $request->all();
-        $input['id'] = $input['id'];
-        $sensor = SensorTissue::orderBy('entryDate','desc')->paginate(30);
-        $sensorcount = SensorTissue::count();
+
+        $dispenserID = $request->input('dispenserID');
+        $sensorValue = SensorTissue::orderBy('entryDate', 'desc')->where('dispenserID','=',$dispenserID)->paginate(30);
         
         return response()->json([
             'success' => true,
-            'sensorcount' => $sensorcount,
-            'sensor' => $sensor,
+            'Tdispensers' => $Tdispensers
+        ]);
+    }
+
+    // Tissue Dispenser Sensor Values
+    public function soapDispenserLists(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'id' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+            'success' => false,
+            'message' => $validator->errors(),
+            ], 401);
+        }
+
+        $Sdispensers = ToiletDispenser::where('dispenserType','=','sensor_soap')->get();
+        
+        return response()->json([
+            'success' => true,
+            'Sdispensers' => $Sdispensers
         ]);
     }
 
@@ -163,10 +203,8 @@ class MobileModelController extends Controller
             'message' => $validator->errors(),
             ], 401);
         }
-        
-        $input = $request->all();
-        $input['id'] = $input['id'];
-        $sensor = SensorSoap::orderBy('entryDate', 'desc')->paginate(1);
+
+        $sensor = SensorSoap::orderBy('entryDate', 'desc')->where('dispenserID','=',$dispenserID)->paginate(1);
         
         return response()->json([
             'success' => true,
@@ -175,10 +213,11 @@ class MobileModelController extends Controller
     }
 
     // Soap Dispenser data
-    public function soapDispenserLists(Request $request){
+    public function soapDispenserValues(Request $request){
 
         $validator = Validator::make($request->all(), [
             'id' => 'required',
+            'dispenserID' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -187,15 +226,12 @@ class MobileModelController extends Controller
             'message' => $validator->errors(),
             ], 401);
         }
-        
-        $input = $request->all();
-        $input['id'] = $input['id'];
-        $sensor = SensorSoap::orderBy('entryDate', 'desc')->paginate(30);
-        $sensorcount = SensorSoap::count();
+
+        $dispenserID = $request->input('dispenserID');
+        $sensor = SensorSoap::orderBy('entryDate', 'desc')->where('dispenserID','=',$dispenserID)->paginate(30);
         
         return response()->json([
             'success' => true,
-            'sensorcount' => $sensorcount,
             'sensor' => $sensor,
         ]);
     }

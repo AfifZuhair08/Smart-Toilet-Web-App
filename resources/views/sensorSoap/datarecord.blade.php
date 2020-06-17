@@ -19,9 +19,10 @@
                 <tr class="d-flex">
                     <th class="col-2">Date</th>
                     <th class="col-2">Time</th>
-                    <th class="col-sm-3">Dispenser ID</th>
-                    <th class="col-sm-3">Entry ID</th>
+                    <th class="col-sm-2">Dispenser ID</th>
+                    <th class="col-sm-2">Entry ID</th>
                     <th class="col-sm-2">Level (mm)</th>
+                    <th class="col-sm-2">Status</th>
                 </tr>
             </thead>
             @foreach ($sensorStateSs as $sensorStateS)
@@ -29,9 +30,10 @@
                 <tr class="d-flex">
                     <th class="col-2">{{$sensorStateS->entryDate->format('D d/m/y')}}</th>
                     <th class="col-2">{{$sensorStateS->entryDate->format('g:i:s A')}}</th>
-                    <th class="col-sm-3">{{$sensorStateS->dispenserID}}</th>
-                    <th class="col-sm-3">{{$sensorStateS->ssID}}</th>
+                    <th class="col-sm-2">{{$sensorStateS->dispenserID}}</th>
+                    <th class="col-sm-2">{{$sensorStateS->ssID}}</th>
                     <th class="col-sm-2">{{$sensorStateS->sensorValue}}</th>
+                    <th class="col-sm-2">{{$sensorStateS->sensorStatus}}</th>
                 </tr>
             </tbody>    
             @endforeach
