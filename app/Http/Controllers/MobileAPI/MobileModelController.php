@@ -164,7 +164,7 @@ class MobileModelController extends Controller
         
         return response()->json([
             'success' => true,
-            'Tdispensers' => $Tdispensers
+            'sensorValue' => $sensorValue
         ]);
     }
 
@@ -195,6 +195,7 @@ class MobileModelController extends Controller
 
         $validator = Validator::make($request->all(), [
             'id' => 'required',
+            'dispenserID' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -204,11 +205,12 @@ class MobileModelController extends Controller
             ], 401);
         }
 
-        $sensor = SensorSoap::orderBy('entryDate', 'desc')->where('dispenserID','=',$dispenserID)->paginate(1);
+        $dispenserID = $request->input('dispenserID');
+        $sensorValue = SensorSoap::orderBy('entryDate', 'desc')->where('dispenserID','=',$dispenserID)->paginate(1);
         
         return response()->json([
             'success' => true,
-            'sensor' => $sensor,
+            'sensorValue' => $sensorValue,
         ]);
     }
 
@@ -228,11 +230,11 @@ class MobileModelController extends Controller
         }
 
         $dispenserID = $request->input('dispenserID');
-        $sensor = SensorSoap::orderBy('entryDate', 'desc')->where('dispenserID','=',$dispenserID)->paginate(30);
+        $sensorValue = SensorSoap::orderBy('entryDate', 'desc')->where('dispenserID','=',$dispenserID)->paginate(30);
         
         return response()->json([
             'success' => true,
-            'sensor' => $sensor,
+            'sensorValue' => $sensorValue
         ]);
     }
 
